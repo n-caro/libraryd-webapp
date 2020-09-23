@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PSoft.Libraryd.Domain.Entities;
+using PSoft.Libraryd.AcessData.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +18,14 @@ namespace PSoft.Libraryd.AcessData
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=LibrarydDBdev;Trusted_Connection=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            modelBuilder.ApplyConfiguration(new AlquilerConfiguration());
+            modelBuilder.ApplyConfiguration(new EstadoDeAlquilerConfiguration());
+            modelBuilder.ApplyConfiguration(new LibroConfiguration());
         }
     }
 }
