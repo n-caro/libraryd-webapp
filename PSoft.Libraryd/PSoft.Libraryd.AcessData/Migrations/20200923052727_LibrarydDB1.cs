@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PSoft.Libraryd.AcessData.Migrations
 {
-    public partial class init : Migration
+    public partial class LibrarydDB1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,6 +81,29 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         principalTable: "EstadoDeAlquileres",
                         principalColumn: "EstadoId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "EstadoDeAlquileres",
+                columns: new[] { "EstadoId", "Descripcion" },
+                values: new object[,]
+                {
+                    { 1, "Reservado" },
+                    { 2, "Alquilado" },
+                    { 3, "Cancelado" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Libros",
+                columns: new[] { "ISBN", "Autor", "Edicion", "Editorial", "Imagen", "Stock", "Titulo" },
+                values: new object[,]
+                {
+                    { "9783642191756", "Ian Gorton", "Second Edition", "Springer", "", 5, "Essential Software Architecture" },
+                    { "9780136073734", "William Stallings", "Septima Edicion", "Pearsons", "", 8, "Organización y Arquitectura de Computadores" },
+                    { "9780764508141", "Davis, Stephen R", "2001", "Hungry Minds Inc", "", 2, "C# for Dummies" },
+                    { "9789875809659", "Dross Rotzank", "2019", "BOOKET", "", 1, "Luna de Pluton" },
+                    { "9788497598637", "Eduard Estivill", "2003", "DEBOLSILLO", "", 15, "NECESITO DORMIR!" },
+                    { "9786073206037", "Ian Sommerville", "Novena Edicion", "Addison-Wesley", "", 3, "Ingenieria de Software" }
                 });
 
             migrationBuilder.CreateIndex(

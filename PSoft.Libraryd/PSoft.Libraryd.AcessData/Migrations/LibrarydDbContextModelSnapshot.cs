@@ -161,6 +161,68 @@ namespace PSoft.Libraryd.AcessData.Migrations
                     b.HasKey("ISBN");
 
                     b.ToTable("Libros");
+
+                    b.HasData(
+                        new
+                        {
+                            ISBN = "9783642191756",
+                            Autor = "Ian Gorton",
+                            Edicion = "Second Edition",
+                            Editorial = "Springer",
+                            Imagen = "",
+                            Stock = 5,
+                            Titulo = "Essential Software Architecture"
+                        },
+                        new
+                        {
+                            ISBN = "9780136073734",
+                            Autor = "William Stallings",
+                            Edicion = "Septima Edicion",
+                            Editorial = "Pearsons",
+                            Imagen = "",
+                            Stock = 8,
+                            Titulo = "Organización y Arquitectura de Computadores"
+                        },
+                        new
+                        {
+                            ISBN = "9780764508141",
+                            Autor = "Davis, Stephen R",
+                            Edicion = "2001",
+                            Editorial = "Hungry Minds Inc",
+                            Imagen = "",
+                            Stock = 2,
+                            Titulo = "C# for Dummies"
+                        },
+                        new
+                        {
+                            ISBN = "9789875809659",
+                            Autor = "Dross Rotzank",
+                            Edicion = "2019",
+                            Editorial = "BOOKET",
+                            Imagen = "",
+                            Stock = 1,
+                            Titulo = "Luna de Pluton"
+                        },
+                        new
+                        {
+                            ISBN = "9788497598637",
+                            Autor = "Eduard Estivill",
+                            Edicion = "2003",
+                            Editorial = "DEBOLSILLO",
+                            Imagen = "",
+                            Stock = 15,
+                            Titulo = "NECESITO DORMIR!"
+                        },
+                        new
+                        {
+                            ISBN = "9786073206037",
+                            Autor = "Ian Sommerville",
+                            Edicion = "Novena Edicion",
+                            Editorial = "Addison-Wesley",
+                            Imagen = "",
+                            Stock = 3,
+                            Titulo = "Ingenieria de Software"
+                        });
                 });
 
             modelBuilder.Entity("PSoft.Libraryd.Domain.Entities.Alquiler", b =>
