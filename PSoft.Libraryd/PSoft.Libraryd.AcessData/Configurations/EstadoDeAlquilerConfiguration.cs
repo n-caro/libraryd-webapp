@@ -11,6 +11,7 @@ namespace PSoft.Libraryd.AcessData.Configurations
     {
         public void Configure(EntityTypeBuilder<EstadoDeAlquiler> builder)
         {
+            builder.HasKey(o => o.EstadoId);
             builder.Property(s => s.EstadoId)
                 .IsRequired();
             builder.Property(s => s.Descripcion)
