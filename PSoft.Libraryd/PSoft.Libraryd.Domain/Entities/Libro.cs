@@ -11,7 +11,7 @@ namespace PSoft.Libraryd.Domain.Entities
         public string Autor { get; set; }
         public string Editorial { get; set; }
         public string Edicion { get; set; }
-        public int Stock { get; set; }
+        public int? Stock { get; set; }
         public string  Imagen { get; set; }
     }
 }
