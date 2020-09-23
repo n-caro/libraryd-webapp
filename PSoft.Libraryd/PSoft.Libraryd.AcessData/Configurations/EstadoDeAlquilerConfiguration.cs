@@ -17,6 +17,12 @@ namespace PSoft.Libraryd.AcessData.Configurations
             builder.Property(s => s.Descripcion)
                 .IsRequired()
                 .HasMaxLength(45);
+            // PRELOAD DATA: Libro
+            builder.HasData(
+                new EstadoDeAlquiler { EstadoId = 1, Descripcion = "Reservado" },
+                new EstadoDeAlquiler { EstadoId = 2, Descripcion = "Alquilado" },
+                new EstadoDeAlquiler { EstadoId = 3, Descripcion = "Cancelado" }
+            );
         }
     }
 }
