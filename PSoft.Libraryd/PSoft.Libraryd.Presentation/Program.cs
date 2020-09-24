@@ -22,6 +22,7 @@ namespace PSoft.Libraryd.Presentation
                 Console.WriteLine("3. Registrar reserva");
                 Console.WriteLine("4. Retornar libro por ISBN");
                 Console.WriteLine("5. Enlistar libros con stock");
+                Console.WriteLine("6. Enlistar reservas");
                 keypresed = Console.ReadKey(true); // show the key as you read it
                 switch (keypresed.KeyChar)
                 {
@@ -66,11 +67,15 @@ namespace PSoft.Libraryd.Presentation
                     case '6':
                         var reservaQuery = serviceProvider.BuildServiceProvider().GetService<IReservaQuery>();
                         var resultsreserva = reservaQuery.GetAllReserva();
-                        foreach (var resultado in resultsreserva)
+                        foreach (var reserva in resultsreserva)
                         {
-                            Console.WriteLine("RESERVA ID: {0}", resultado.Id);
+                            Console.WriteLine("RESERVA ID: {0} - Fecha de reserva: {1}", reserva.ReservaID, reserva.ReservaFecha);
+                            Console.WriteLine("LIBRO");
+                            Console.WriteLine("ISBN: {0}", reserva.LibroISBN);
+                            Console.WriteLine("Titulo: {0} - Autor: {1}", reserva.LibroTitulo, reserva.LibroAutor);
+                            Console.WriteLine("Cliente: ID: {0} - DNI: {1}", reserva.ClienteId, reserva.ClienteDNI);
                             // Libro data
-                            Console.WriteLine("     Titulo: {0}  Autor: {1}", resultado.Titulo, resultado.Autor);
+                            //Console.WriteLine("     Titulo: {0}  Autor: {1}", resultado.Titulo, resultado.Autor);
                             // Client Data
 
                         }
