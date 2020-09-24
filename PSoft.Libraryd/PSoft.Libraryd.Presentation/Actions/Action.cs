@@ -15,5 +15,11 @@ namespace PSoft.Libraryd.Presentation.Actions
             this.description = description;
         }
         abstract public void runAction();
+
+        public string getDescription()
+        {
+            return description;
+        }
+
     }
 }
