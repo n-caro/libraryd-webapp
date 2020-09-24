@@ -6,10 +6,10 @@ using SqlKata;
 namespace PSoft.Libraryd.Presentation
 {
     class Program
-    {
-        public const string NAME = "Librayd";
-        public const string VERSION = "v1.0";
-        public const string CLIENT = "Municipalidad de Carmen de Areco";
+    { 
+        public const string NAME = "Librayd"; // migrate to .config file
+        public const string VERSION = "v1.0"; // migrate to .config file
+        public const string CLIENT = "Municipalidad de Carmen de Areco"; // migrate to .config file
         public static readonly IServiceCollection serviceProvider = ContainerBuilder.Build();
         static void Main(string[] args)
         {

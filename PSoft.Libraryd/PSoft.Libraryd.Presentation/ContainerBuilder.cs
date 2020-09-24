@@ -21,7 +21,7 @@ namespace PSoft.Libraryd.Presentation
 {
     public class ContainerBuilder
     {
-        private const string connectionString = @"Server=localhost\SQLEXPRESS;Database=LibrarydDBdev;Trusted_Connection=True;";
+        private const string connectionString = @"Server=localhost\SQLEXPRESS;Database=LibrarydDBdev;Trusted_Connection=True;"; // migrate to .config file
 
         public static IServiceCollection Build()
         {

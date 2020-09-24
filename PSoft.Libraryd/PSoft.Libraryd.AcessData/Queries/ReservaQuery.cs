@@ -26,18 +26,6 @@ namespace PSoft.Libraryd.AcessData.Queries
 
         public List<ResponseGetAllReserva> GetAllReserva()
         {
-            /* FUNCIONA
-            var db = new QueryFactory(connection, sqlKataCompiler);
-
-            var query = db.Query("Alquileres")
-                .Where("Estado", "=", ESTADO_RESERVA_ID)
-                .Join("Clientes", "Alquileres.Cliente", "Clientes.ClienteId")
-                .Join("Libros", "Alquileres.ISBN", "Libros.ISBN");
-
-            var result = query.Get<ResponseGetAllReserva>();
-            return result.ToList();
-            */
-
             var db = new QueryFactory(connection, sqlKataCompiler);
 
             var query = db.Query("Alquileres")
