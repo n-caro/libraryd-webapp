@@ -23,7 +23,8 @@ namespace PSoft.Libraryd.Presentation
             IServiceCollection serviceProvider = new ServiceCollection()
                 .AddDbContext<LibrarydDbContext>(options => options.UseSqlServer(connectionString))
                 .AddTransient<IGenericsRepository, GenericsRepository>()
-                .AddTransient<IClienteService, ClienteService>();
+                .AddTransient<IClienteService, ClienteService>()
+                .AddTransient<IAlquilerServices, AlquilerServices>();
             return serviceProvider;
         }
 
