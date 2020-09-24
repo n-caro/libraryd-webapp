@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PSoft.Libraryd.AcessData.Migrations
 {
-    public partial class LibrarydDB1 : Migration
+    public partial class libraryddb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
