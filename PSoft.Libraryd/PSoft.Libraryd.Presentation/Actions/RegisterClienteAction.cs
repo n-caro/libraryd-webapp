@@ -2,8 +2,6 @@
 using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.Presentation.Actions
 {
@@ -29,26 +27,28 @@ namespace PSoft.Libraryd.Presentation.Actions
                 dni = Console.ReadLine();
                 Console.WriteLine("Email: ");
                 email = Console.ReadLine();
-                if ((nombre == "" | apellido == "" | dni == "" | email == ""))
-                    throw new ArgumentNullException();
-                if(!email.Contains("@"))
+                if (!validateClienteFields(nombre, apellido, dni, email))
                     throw new ArgumentException();
                 var crearCliente = _serviceProvider.BuildServiceProvider().GetService<IClienteService>();
                 crearCliente.CreateCliente(new ClienteDTO { Nombre = nombre, Apellido = apellido, DNI = dni, Email = email });
-                Console.WriteLine("Se ha guarado con exito el cliente.");
+                OutputColors.Sucess("El cliente ha sido registrado con exito.");
             }
             catch (Exception e)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Ha ocurrido un error: " + e.Message);
-                Console.ResetColor();
+                OutputColors.Error("Ha ocurrido un error: " + e.Message);
             }
             finally
             {
-                Console.WriteLine("Presione cualquier tecla para volver al menu principal");
+                Console.WriteLine("\n Presione cualquier tecla para volver al menu principal");
                 Console.ReadKey(false);
                 Console.Clear();
             }
+        }
+        private static bool validateClienteFields(string nombre, string apellido, string dni, string email)
+        {
+            if ((nombre == "" | apellido == "" | dni == "" | email == ""))
+                return false;
+            return ValidatorActionFields.validateEmail(email);
         }
     }
 }

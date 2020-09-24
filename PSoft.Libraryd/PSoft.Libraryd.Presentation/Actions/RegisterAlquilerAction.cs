@@ -2,8 +2,6 @@
 using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.Presentation.Actions
 {
@@ -20,23 +18,19 @@ namespace PSoft.Libraryd.Presentation.Actions
             Console.WriteLine(description);
             try
             {
-                string isbn;
-                int idcliente;
                 Console.WriteLine("Cliente ID: ");
-                idcliente = int.TryParse(Console.ReadLine(), out idcliente) ? idcliente : -1;
-                if (idcliente <= 0) throw new ArgumentException();
+                int idcliente = int.TryParse(Console.ReadLine(), out idcliente) ? idcliente : -1;
                 Console.WriteLine("ISBN del libro: ");
-                isbn = Console.ReadLine();
-                if (isbn == "") throw new ArgumentNullException();
+                string isbn = Console.ReadLine();
+                if (!validateAlquilerFields(isbn, idcliente))
+                    throw new ArgumentException();
                 var createAlquiler = _serviceProvider.BuildServiceProvider().GetService<IAlquilerServices>();
                 createAlquiler.CreateAlquiler(new AlquilerDTO { Cliente = idcliente, ISBN = isbn });
-                Console.WriteLine("Se ha guardado con éxito el alquiler.");
+                OutputColors.Sucess("Se ha registrado el alquiler con éxito.");
             }
             catch (Exception e)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Ha ocurrido un error: " + e.Message);
-                Console.ResetColor();
+                OutputColors.Error("Ha ocurrido un error: " + e.Message);
             }
             finally
             {
@@ -44,6 +38,12 @@ namespace PSoft.Libraryd.Presentation.Actions
                 Console.ReadKey(false);
                 Console.Clear();
             }
+        }
+        private static bool validateAlquilerFields(string isbn, int idcliente)
+        {
+            if (isbn == "" || idcliente <= 0)
+                return false;
+            return true;
         }
     }
 }

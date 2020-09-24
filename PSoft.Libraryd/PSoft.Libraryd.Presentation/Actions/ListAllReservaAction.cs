@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
 using PSoft.Libraryd.Domain.Queries;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.Presentation.Actions
 {
@@ -25,7 +22,7 @@ namespace PSoft.Libraryd.Presentation.Actions
                 var resultsreservas = reservaQuery.GetAllReserva();
                 if (resultsreservas.Count == 0)
                 {
-                    Console.WriteLine("No hay reservas actualmente.");
+                    OutputColors.Warning("\n No hay reservas actualmente.");
                 }
                 else
                 {
@@ -37,9 +34,7 @@ namespace PSoft.Libraryd.Presentation.Actions
             }
             catch (Exception e)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Ha ocurrido un error: " + e.Message);
-                Console.ResetColor();
+                OutputColors.Error("Ha ocurrido un error: " + e.Message);
             }
             finally
             {
@@ -51,18 +46,16 @@ namespace PSoft.Libraryd.Presentation.Actions
 
         private void printReserva(ResponseGetAllReserva reserva)
         {
+            OutputColors.ColorGray("---------------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("RESERVA ID: {0} - Fecha de reserva: {1}/{2}/{3}", reserva.ReservaID, reserva.ReservaFecha.Day, reserva.ReservaFecha.Month, reserva.ReservaFecha.Year);
-            Console.ResetColor();
-            Console.WriteLine("Datos del cliente");
+            OutputColors.ColorGray("Datos del cliente");
             Console.WriteLine("     ID: {0} - DNI: {1}", reserva.ClienteId, reserva.ClienteDNI);
-            Console.WriteLine("Datos del libro");
+            OutputColors.ColorGray("Datos del libro");
             Console.WriteLine("     TITULO: {0} - Autor: {1}", reserva.LibroTitulo, reserva.LibroAutor);
             Console.WriteLine("     EDICION: {0} - Editorial: {1}", reserva.LibroEdicion, reserva.LibroEditorial);
             Console.WriteLine("     ISBN: {0}", reserva.LibroISBN);
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("---------------------------------------------------------------");
-            Console.ResetColor();
+            OutputColors.ColorGray("---------------------------------------------------------------");
         }
     }
 }

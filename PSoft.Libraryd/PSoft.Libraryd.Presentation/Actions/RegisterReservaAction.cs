@@ -2,8 +2,6 @@
 using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.Presentation.Actions
 {
@@ -20,24 +18,22 @@ namespace PSoft.Libraryd.Presentation.Actions
             Console.WriteLine(description);
             try
             {
-                Console.WriteLine("Cliente ID: ");
-                int idcliente = int.TryParse(Console.ReadLine(), out idcliente) ? idcliente : -1;
-                if (idcliente <= 0) throw new ArgumentException();
                 Console.WriteLine("ISBN del libro: ");
                 string isbn = Console.ReadLine();
-                if (isbn == "") throw new ArgumentNullException();
+                Console.WriteLine("Cliente ID: ");
+                int idcliente = int.TryParse(Console.ReadLine(), out idcliente) ? idcliente : -1;
                 Console.WriteLine("Fecha de reserva: ");
                 DateTime fechaReserva = DateTime.TryParse(Console.ReadLine(), out fechaReserva) ? fechaReserva : DateTime.MinValue;
-                if(fechaReserva == DateTime.MinValue) throw new ArgumentException();
+                // validator
+                if(!validateReservaFields(isbn, idcliente,fechaReserva))
+                    throw new ArgumentException();
                 var createAlquiler = _serviceProvider.BuildServiceProvider().GetService<IAlquilerServices>();
                 createAlquiler.CreateReserva(new AlquilerDTO { Cliente = idcliente, ISBN = isbn, FechaReserva = fechaReserva });
-                Console.WriteLine("Se ha guardado con éxito la reserva.");
+                OutputColors.Sucess("La reserva ha sido registrado con exito.");
             }
             catch (Exception e)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Ha ocurrido un error: " + e.Message);
-                Console.ResetColor();
+                OutputColors.Error("Ha ocurrido un error: " + e.Message);
             }
             finally
             {
@@ -45,6 +41,14 @@ namespace PSoft.Libraryd.Presentation.Actions
                 Console.ReadKey(false);
                 Console.Clear();
             }
+        }
+        private static bool validateReservaFields(string isbn, int idcliente, DateTime fechaReserva)
+        {
+            if (isbn == "" || idcliente <= 0)
+                return false;
+            if (fechaReserva == DateTime.MinValue || fechaReserva < DateTime.Now.Date)
+                return false;
+            return true;
         }
     }
 }

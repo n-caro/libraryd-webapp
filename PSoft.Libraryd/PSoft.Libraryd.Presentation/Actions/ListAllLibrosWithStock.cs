@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
 using PSoft.Libraryd.Domain.Queries;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.Presentation.Actions
 {
@@ -25,7 +22,7 @@ namespace PSoft.Libraryd.Presentation.Actions
                 var resultLibrosDisponibles = reservaQuery.GetAllLibroWithStock();
                 if (resultLibrosDisponibles.Count == 0)
                 {
-                    Console.WriteLine("No hay libros disponibles.");
+                    OutputColors.Warning("\n No hay libros disponibles. \n");
                 }
                 else
                 {
@@ -37,9 +34,7 @@ namespace PSoft.Libraryd.Presentation.Actions
             }
             catch (Exception e)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Ha ocurrido un error: " + e.Message);
-                Console.ResetColor();
+                OutputColors.Error("Ha ocurrido un error: " + e.Message);
             }
             finally
             {
@@ -51,16 +46,14 @@ namespace PSoft.Libraryd.Presentation.Actions
 
         private void printLibro(ResponseGetAllLibroWithStock libro)
         {
-            Console.WriteLine("Titulo: {0}", libro.Titulo);
-            Console.WriteLine("Autor: {0}", libro.Autor);
-            Console.WriteLine("ISBN: {0}", libro.ISBN);
-            Console.WriteLine("Edicion: {0}", libro.Edicion);
-            Console.WriteLine("Editorial: {0}", libro.Editorial);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Stock disponible: {0}", libro.Stock);
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("---------------------------------------------------------------");
-            Console.ResetColor();
+            OutputColors.ColorGray("---------------------------------------------------------------");
+            Console.WriteLine("ISBN:        {0}", libro.ISBN);
+            Console.WriteLine("Titulo:      {0}", libro.Titulo);
+            Console.WriteLine("Autor:       {0}", libro.Autor);
+            Console.WriteLine("Edicion:     {0}", libro.Edicion);
+            Console.WriteLine("Editorial:   {0}", libro.Editorial);
+            OutputColors.ColorYellow("Stock:       " + libro.Stock);
+            OutputColors.ColorGray("---------------------------------------------------------------");
         }
     }
 }
