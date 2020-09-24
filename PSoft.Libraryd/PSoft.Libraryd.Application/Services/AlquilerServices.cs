@@ -11,23 +11,22 @@ namespace PSoft.Libraryd.Application.Services
     public class AlquilerServices : IAlquilerServices
     {
         private readonly IGenericsRepository _repository;
-        private readonly ILibroQuery _libroquery;
         private readonly ILibroRepository _libroRepository;
-        public AlquilerServices(IGenericsRepository repository, ILibroQuery libroquery, ILibroRepository libroRepository)
+        private readonly ILibroQuery _libroquery;
+        private readonly IClienteQuery _clienteQuery;
+        public AlquilerServices(IGenericsRepository repository, ILibroQuery libroquery, ILibroRepository libroRepository, IClienteQuery clienteQuery)
         {
             _repository = repository;
             _libroquery = libroquery;
             _libroRepository = libroRepository;
+            _clienteQuery = clienteQuery;
         }
         public Alquiler CreateAlquiler(AlquilerDTO alquiler)
         {
-            // consultar libro y restar
-            if (!_libroquery.LibroHasStock(alquiler.ISBN))
-            {
-                Console.WriteLine("EL LIBRO NO STOCK - FINALIZAR");
-
-            }
-            // create alquiler
+            // Check if Libro has stock (and Exists)
+            if (!_libroquery.LibroHasStock(alquiler.ISBN)) throw new ArgumentException();
+            // Check if Cliente Exist
+            if (!_clienteQuery.ClienteExists(alquiler.Cliente)) throw new ArgumentException();
             var entity = new Alquiler
             {
                 FechaAlquiler = DateTime.Now,
@@ -44,12 +43,18 @@ namespace PSoft.Libraryd.Application.Services
 
         public Alquiler CreateReserva(AlquilerDTO reserva)
         {
+            // validate if Libro exists
+            if (!_libroquery.LibroHasStock(reserva.ISBN)) throw new ArgumentException();
+            // Check if Cliente Exist
+            if (!_clienteQuery.ClienteExists(reserva.Cliente)) throw new ArgumentException();
+            // Check if Date is valid
+            if(reserva.FechaReserva < DateTime.Today) throw new ArgumentException();
+
             var entity = new Alquiler
             {
-                FechaReserva = DateTime.Now,
+                FechaReserva = reserva.FechaReserva,
                 ClienteId = reserva.Cliente,
                 EstadoId = 2,
-                FechaDevolucion = DateTime.Now.AddDays(7),
                 ISBN = reserva.ISBN
             };
             _repository.Add<Alquiler>(entity);

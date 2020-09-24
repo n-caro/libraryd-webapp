@@ -33,6 +33,7 @@ namespace PSoft.Libraryd.Presentation
                 .AddTransient<IAlquilerServices, AlquilerServices>()
                 .AddTransient<ILibroQuery, LibroQuery>()
                 .AddTransient<IReservaQuery, ReservaQuery>()
+                .AddTransient<IClienteQuery, ClienteQuery>()
                 .AddTransient<ILibroRepository, LibroRepository>()
                 .AddTransient<Compiler, SqlServerCompiler>()
                 .AddTransient<IDbConnection>(b =>{return new SqlConnection(connectionString);});
