@@ -45,5 +45,13 @@ namespace PSoft.Libraryd.AcessData.Queries
                 ISBN = query.ISBN
             };
          }
+
+        public bool LibroHasStock(string ISBN)
+        {
+            var query = _dbContext.Libros.Where(l => l.ISBN == ISBN).FirstOrDefault();
+            if (query == null) return false ; //avoid
+            if (query.Stock > 0) return true;
+            return false;
+        }
     }
 }

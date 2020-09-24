@@ -63,6 +63,18 @@ namespace PSoft.Libraryd.Presentation
                             Console.WriteLine(libro.Titulo + "STOCK: " + libro.Stock);
                         }
                         break;
+                    case '6':
+                        var reservaQuery = serviceProvider.BuildServiceProvider().GetService<IReservaQuery>();
+                        var resultsreserva = reservaQuery.GetAllReserva();
+                        foreach (var resultado in resultsreserva)
+                        {
+                            Console.WriteLine("RESERVA ID: {0}", resultado.Id);
+                            // Libro data
+                            Console.WriteLine("     Titulo: {0}  Autor: {1}", resultado.Titulo, resultado.Autor);
+                            // Client Data
+
+                        }
+                        break;
                 }
             }
             while (keypresed.Key != ConsoleKey.Escape);
