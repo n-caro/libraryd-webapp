@@ -11,6 +11,11 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.IO;
+using SqlKata.Compilers;
+using System.Data;
+using System.Data.SqlClient;
+using PSoft.Libraryd.Domain.Queries;
+using PSoft.Libraryd.AcessData.Queries;
 
 namespace PSoft.Libraryd.Presentation
 {
@@ -20,11 +25,15 @@ namespace PSoft.Libraryd.Presentation
 
         public static IServiceCollection Build()
         {
+
             IServiceCollection serviceProvider = new ServiceCollection()
                 .AddDbContext<LibrarydDbContext>(options => options.UseSqlServer(connectionString))
                 .AddTransient<IGenericsRepository, GenericsRepository>()
                 .AddTransient<IClienteService, ClienteService>()
-                .AddTransient<IAlquilerServices, AlquilerServices>();
+                .AddTransient<IAlquilerServices, AlquilerServices>()
+                .AddTransient<ILibroQuery, LibroQuery>()
+                .AddTransient<Compiler, SqlServerCompiler>()
+                .AddTransient<IDbConnection>(b =>{return new SqlConnection(connectionString);});
             return serviceProvider;
         }
 

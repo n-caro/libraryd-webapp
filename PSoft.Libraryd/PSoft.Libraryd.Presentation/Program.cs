@@ -2,6 +2,7 @@
 using PSoft.Libraryd.Domain.DTOs;
 using System;
 using Microsoft.Extensions.DependencyInjection;
+using PSoft.Libraryd.Domain.Queries;
 
 namespace PSoft.Libraryd.Presentation
 {
@@ -19,6 +20,8 @@ namespace PSoft.Libraryd.Presentation
                 Console.WriteLine("1. Registrar cliente");
                 Console.WriteLine("2. Registrar alquiler");
                 Console.WriteLine("3. Registrar reserva");
+                Console.WriteLine("4. Retornar libro por ISBN");
+                Console.WriteLine("5. Enlistar libros con stock");
                 keypresed = Console.ReadKey(true); // show the key as you read it
                 switch (keypresed.KeyChar)
                 {
@@ -36,6 +39,29 @@ namespace PSoft.Libraryd.Presentation
                         Console.WriteLine("+ Agregar reserva");
                         addReserva();
                         Console.WriteLine("fin menu 3");
+                        break;
+                    case '4':
+                        Console.WriteLine("ISBN:");
+                        string isbn = Console.ReadLine();
+                        var libroQuery = serviceProvider.BuildServiceProvider().GetService<ILibroQuery>();
+                        var result = libroQuery.GetLibroByISBN(isbn);
+                        if(result == null)
+                        {
+                            Console.WriteLine("no se encontró");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Resultado:");
+                            Console.WriteLine(result.ISBN + result.Titulo);
+                        }
+                        break;
+                    case '5':
+                        var libroQuery2 = serviceProvider.BuildServiceProvider().GetService<ILibroQuery>();
+                        var results = libroQuery2.GetAllLibroWithStock();
+                        foreach(var libro in results)
+                        {
+                            Console.WriteLine(libro.Titulo + "STOCK: " + libro.Stock);
+                        }
                         break;
                 }
             }

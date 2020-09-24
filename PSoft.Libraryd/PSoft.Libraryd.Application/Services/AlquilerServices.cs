@@ -33,9 +33,6 @@ namespace PSoft.Libraryd.Application.Services
 
         public Alquiler CreateReserva(AlquilerDTO reserva)
         {
-            // buscar libro
-            // verificar stock
-            // crear alquiler
             var entity = new Alquiler
             {
                 FechaReserva = DateTime.Now,
