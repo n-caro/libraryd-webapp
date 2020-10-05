@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Data;
+﻿using PSoft.Libraryd.Domain.DTOs;
+using PSoft.Libraryd.Domain.Queries;
 using SqlKata.Compilers;
 using SqlKata.Execution;
-using PSoft.Libraryd.Domain.Queries;
-using PSoft.Libraryd.Domain.DTOs;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using Dapper;
-using PSoft.Libraryd.Domain.Entities;
 
 namespace PSoft.Libraryd.AcessData.Queries
 {
@@ -44,12 +40,12 @@ namespace PSoft.Libraryd.AcessData.Queries
                 Titulo = query.Titulo,
                 ISBN = query.ISBN
             };
-         }
+        }
 
         public bool LibroHasStock(string ISBN)
         {
             var query = _dbContext.Libros.Where(l => l.ISBN == ISBN).FirstOrDefault();
-            if (query == null) return false ; //avoid
+            if (query == null) return false; //avoid
             if (query.Stock > 0) return true;
             return false;
         }

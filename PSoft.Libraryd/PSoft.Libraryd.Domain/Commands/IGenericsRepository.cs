@@ -1,9 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PSoft.Libraryd.Domain.Commands
+﻿namespace PSoft.Libraryd.Domain.Commands
 {
     public interface IGenericsRepository
     {

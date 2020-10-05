@@ -1,10 +1,7 @@
 ﻿using PSoft.Libraryd.Domain.Queries;
 using SqlKata.Compilers;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace PSoft.Libraryd.AcessData.Queries
 {
@@ -20,10 +17,10 @@ namespace PSoft.Libraryd.AcessData.Queries
             this._dbContext = dbContext;
             this.sqlKataCompiler = sqlKataCompiler;
         }
-        public bool ClienteExists(int  ClienteId)
+        public bool ClienteExists(int ClienteId)
         {
             var query = _dbContext.Clientes.Where(c => c.ClienteId == ClienteId).FirstOrDefault();
-            if (query == null) return false; 
+            if (query == null) return false;
             return true;
         }
     }

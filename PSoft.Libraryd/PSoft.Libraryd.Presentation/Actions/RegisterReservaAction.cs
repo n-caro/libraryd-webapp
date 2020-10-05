@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using PSoft.Libraryd.Application.Services;
+﻿using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
 using System;
 
@@ -26,7 +25,7 @@ namespace PSoft.Libraryd.Presentation.Actions
                 Console.WriteLine("Fecha de reserva: ");
                 DateTime fechaReserva = DateTime.TryParse(Console.ReadLine(), out fechaReserva) ? fechaReserva : DateTime.MinValue;
                 // validator
-                if(!validateReservaFields(isbn, idcliente,fechaReserva))
+                if (!validateReservaFields(isbn, idcliente, fechaReserva))
                     throw new ArgumentException();
                 alquilerService.CreateReserva(new AlquilerDTO { Cliente = idcliente, ISBN = isbn, FechaReserva = fechaReserva });
                 OutputColors.Sucess("La reserva ha sido registrado con exito.");

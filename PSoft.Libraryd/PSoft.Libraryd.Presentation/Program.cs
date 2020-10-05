@@ -1,14 +1,13 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.Queries;
 using PSoft.Libraryd.Presentation.Actions;
-using SqlKata;
+using System;
 
 namespace PSoft.Libraryd.Presentation
 {
     class Program
-    { 
+    {
         public const string NAME = "Librayd"; // migrate to .config file
         public const string VERSION = "v1.0"; // migrate to .config file
         public const string CLIENT = "Municipalidad de Carmen de Areco"; // migrate to .config file
@@ -25,7 +24,7 @@ namespace PSoft.Libraryd.Presentation
                 new ListAllReservaAction(serviceProvider.BuildServiceProvider().GetService<IReservaQuery>(), "Enlistar reservas"),
                 new ListAllLibrosWithStock(serviceProvider.BuildServiceProvider().GetService<ILibroQuery>(), "Enlistar libros disponibles")
             };
-            while(true)
+            while (true)
             {
                 PrintTitle();
                 OutputColors.ColorGray("MENU -------------------------------eu-------");

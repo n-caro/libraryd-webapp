@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using PSoft.Libraryd.Domain.DTOs;
+﻿using PSoft.Libraryd.Domain.DTOs;
 using PSoft.Libraryd.Domain.Queries;
 using System;
 
@@ -8,7 +7,7 @@ namespace PSoft.Libraryd.Presentation.Actions
     class ListAllReservaAction : Action
     {
         private IReservaQuery reservaQuery;
-        public ListAllReservaAction(IReservaQuery reservaQuery, string description): base(description)
+        public ListAllReservaAction(IReservaQuery reservaQuery, string description) : base(description)
         {
             this.reservaQuery = reservaQuery;
         }
@@ -26,7 +25,7 @@ namespace PSoft.Libraryd.Presentation.Actions
                 }
                 else
                 {
-                    foreach(var reserva in resultsreservas)
+                    foreach (var reserva in resultsreservas)
                     {
                         printReserva(reserva);
                     }

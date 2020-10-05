@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using PSoft.Libraryd.Domain.DTOs;
+﻿using PSoft.Libraryd.Domain.DTOs;
 using PSoft.Libraryd.Domain.Queries;
 using System;
 
@@ -8,7 +7,7 @@ namespace PSoft.Libraryd.Presentation.Actions
     class ListAllLibrosWithStock : Action
     {
         private ILibroQuery reservaQuery;
-        public ListAllLibrosWithStock(ILibroQuery reservaQuery, string description) :base(description)
+        public ListAllLibrosWithStock(ILibroQuery reservaQuery, string description) : base(description)
         {
             this.reservaQuery = reservaQuery;
         }

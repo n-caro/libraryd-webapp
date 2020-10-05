@@ -1,10 +1,7 @@
 ﻿using PSoft.Libraryd.Domain.Commands;
 using SqlKata.Compilers;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace PSoft.Libraryd.AcessData.Commands
 {

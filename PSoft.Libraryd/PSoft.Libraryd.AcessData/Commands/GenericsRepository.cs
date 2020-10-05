@@ -1,7 +1,4 @@
 ﻿using PSoft.Libraryd.Domain.Commands;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.AcessData.Commands
 {

@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-namespace PSoft.Libraryd.Presentation.Actions
+﻿namespace PSoft.Libraryd.Presentation.Actions
 {
-    abstract class Action: IAction
+    abstract class Action : IAction
     {
         protected string description;
 
-        public Action (string description)
+        public Action(string description)
         {
             this.description = description;
         }

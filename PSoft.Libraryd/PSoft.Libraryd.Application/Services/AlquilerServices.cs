@@ -3,8 +3,6 @@ using PSoft.Libraryd.Domain.DTOs;
 using PSoft.Libraryd.Domain.Entities;
 using PSoft.Libraryd.Domain.Queries;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.Application.Services
 {
@@ -48,7 +46,7 @@ namespace PSoft.Libraryd.Application.Services
             // Check if Cliente Exist
             if (!_clienteQuery.ClienteExists(reserva.Cliente)) throw new ArgumentException();
             // Check if Date is valid
-            if(reserva.FechaReserva < DateTime.Today) throw new ArgumentException();
+            if (reserva.FechaReserva < DateTime.Today) throw new ArgumentException();
 
             var entity = new Alquiler
             {

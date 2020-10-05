@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using PSoft.Libraryd.Application.Services;
+﻿using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
 using System;
 
@@ -8,7 +7,7 @@ namespace PSoft.Libraryd.Presentation.Actions
     class RegisterAlquilerAction : Action
     {
         private IAlquilerServices alquilerService;
-        public RegisterAlquilerAction(IAlquilerServices alquilerService, string description) :base(description)
+        public RegisterAlquilerAction(IAlquilerServices alquilerService, string description) : base(description)
         {
             this.alquilerService = alquilerService;
         }
