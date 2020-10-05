@@ -20,6 +20,8 @@ namespace PSoft.Libraryd.AcessData.Configurations
             builder.Property(s => s.Email)
                 .IsRequired()
                 .HasMaxLength(45);
+            // AK fields
+            builder.HasAlternateKey(c => new { c.DNI, c.Email });
         }
     }
 }

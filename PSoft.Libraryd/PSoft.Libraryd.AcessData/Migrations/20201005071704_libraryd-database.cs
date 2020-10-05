@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PSoft.Libraryd.AcessData.Migrations
 {
-    public partial class libraryddb : Migration
+    public partial class libraryddatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,6 +21,7 @@ namespace PSoft.Libraryd.AcessData.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Clientes", x => x.ClienteId);
+                    table.UniqueConstraint("AK_Clientes_DNI_Email", x => new { x.DNI, x.Email });
                 });
 
             migrationBuilder.CreateTable(
@@ -64,7 +65,8 @@ namespace PSoft.Libraryd.AcessData.Migrations
                     Estado = table.Column<int>(nullable: false),
                     FechaAlquiler = table.Column<DateTime>(type: "Date", nullable: true),
                     FechaReserva = table.Column<DateTime>(type: "Date", nullable: true),
-                    FechaDevolucion = table.Column<DateTime>(type: "Date", nullable: true)
+                    FechaDevolucion = table.Column<DateTime>(type: "Date", nullable: true),
+                    LibroISBN = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -81,6 +83,12 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         principalTable: "EstadoDeAlquileres",
                         principalColumn: "EstadoId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Alquileres_Libros_LibroISBN",
+                        column: x => x.LibroISBN,
+                        principalTable: "Libros",
+                        principalColumn: "ISBN",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -115,6 +123,11 @@ namespace PSoft.Libraryd.AcessData.Migrations
                 name: "IX_Alquileres_Estado",
                 table: "Alquileres",
                 column: "Estado");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Alquileres_LibroISBN",
+                table: "Alquileres",
+                column: "LibroISBN");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -123,13 +136,13 @@ namespace PSoft.Libraryd.AcessData.Migrations
                 name: "Alquileres");
 
             migrationBuilder.DropTable(
-                name: "Libros");
-
-            migrationBuilder.DropTable(
                 name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "EstadoDeAlquileres");
+
+            migrationBuilder.DropTable(
+                name: "Libros");
         }
     }
 }

@@ -14,6 +14,7 @@ namespace PSoft.Libraryd.Domain.Entities
 
         public EstadoDeAlquiler Estado { get; set; }
         public Cliente Cliente { get; set; }
+        public Libro Libro { get; set; }
 
     }
 }
