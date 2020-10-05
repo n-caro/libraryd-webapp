@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
+using PSoft.Libraryd.Application.Services;
+using PSoft.Libraryd.Domain.Queries;
 using PSoft.Libraryd.Presentation.Actions;
 using SqlKata;
 
@@ -17,16 +19,16 @@ namespace PSoft.Libraryd.Presentation
             // Actions Menu
             IAction[] ActionsList = new IAction[]
             {
-                new RegisterClienteAction(serviceProvider, "Registrar cliente"),
-                new RegisterAlquilerAction(serviceProvider, "Registrar Alquiler"),
-                new RegisterReservaAction(serviceProvider, "Registrar Reserva"),
-                new ListAllReservaAction(serviceProvider, "Enlistar Reservas"),
-                new ListAllLibrosWithStock(serviceProvider, "Enlistar libros disponibles")
+                new RegisterClienteAction(serviceProvider.BuildServiceProvider().GetService<IClienteService>(), "Registrar Cliente"),
+                new RegisterAlquilerAction(serviceProvider.BuildServiceProvider().GetService<IAlquilerServices>(), "Registrar Alquiler"),
+                new RegisterReservaAction(serviceProvider.BuildServiceProvider().GetService<IAlquilerServices>(), "Registrar Reserva"),
+                new ListAllReservaAction(serviceProvider.BuildServiceProvider().GetService<IReservaQuery>(), "Enlistar reservas"),
+                new ListAllLibrosWithStock(serviceProvider.BuildServiceProvider().GetService<ILibroQuery>(), "Enlistar libros disponibles")
             };
             while(true)
             {
                 PrintTitle();
-                OutputColors.ColorGray("MENU --------------------------------------");
+                OutputColors.ColorGray("MENU -------------------------------eu-------");
                 for (int pos = 0; pos < ActionsList.Length; pos++)
                     Console.WriteLine("     {0}. {1}", pos + 1, ActionsList[pos].getDescription());
                 OutputColors.ColorGray("-------------------------------------------");

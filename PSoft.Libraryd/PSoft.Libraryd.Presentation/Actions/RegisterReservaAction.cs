@@ -7,9 +7,10 @@ namespace PSoft.Libraryd.Presentation.Actions
 {
     class RegisterReservaAction : Action
     {
-        public RegisterReservaAction(IServiceCollection serviceProvider, string description)
-            : base(serviceProvider, description)
+        private IAlquilerServices alquilerService;
+        public RegisterReservaAction(IAlquilerServices alquilerService, string description) : base(description)
         {
+            this.alquilerService = alquilerService;
         }
 
         public override void runAction()
@@ -27,8 +28,7 @@ namespace PSoft.Libraryd.Presentation.Actions
                 // validator
                 if(!validateReservaFields(isbn, idcliente,fechaReserva))
                     throw new ArgumentException();
-                var createAlquiler = _serviceProvider.BuildServiceProvider().GetService<IAlquilerServices>();
-                createAlquiler.CreateReserva(new AlquilerDTO { Cliente = idcliente, ISBN = isbn, FechaReserva = fechaReserva });
+                alquilerService.CreateReserva(new AlquilerDTO { Cliente = idcliente, ISBN = isbn, FechaReserva = fechaReserva });
                 OutputColors.Sucess("La reserva ha sido registrado con exito.");
             }
             catch (Exception e)

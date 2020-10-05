@@ -7,9 +7,10 @@ namespace PSoft.Libraryd.Presentation.Actions
 {
     class RegisterClienteAction : Action
     {
-        public RegisterClienteAction(IServiceCollection serviceProvider, string description)
-            : base(serviceProvider, description)
+        private IClienteService clienteservice;
+        public RegisterClienteAction(IClienteService clienteservice, string description) : base(description)
         {
+            this.clienteservice = clienteservice;
         }
 
         public override void runAction()
@@ -29,8 +30,7 @@ namespace PSoft.Libraryd.Presentation.Actions
                 email = Console.ReadLine();
                 if (!validateClienteFields(nombre, apellido, dni, email))
                     throw new ArgumentException();
-                var crearCliente = _serviceProvider.BuildServiceProvider().GetService<IClienteService>();
-                crearCliente.CreateCliente(new ClienteDTO { Nombre = nombre, Apellido = apellido, DNI = dni, Email = email });
+                clienteservice.CreateCliente(new ClienteDTO { Nombre = nombre, Apellido = apellido, DNI = dni, Email = email });
                 OutputColors.Sucess("El cliente ha sido registrado con exito.");
             }
             catch (Exception e)

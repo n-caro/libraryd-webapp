@@ -7,9 +7,10 @@ namespace PSoft.Libraryd.Presentation.Actions
 {
     class ListAllLibrosWithStock : Action
     {
-        public ListAllLibrosWithStock(IServiceCollection serviceProvider, string description)
-            : base(serviceProvider, description)
+        private ILibroQuery reservaQuery;
+        public ListAllLibrosWithStock(ILibroQuery reservaQuery, string description) :base(description)
         {
+            this.reservaQuery = reservaQuery;
         }
 
         public override void runAction()
@@ -18,7 +19,6 @@ namespace PSoft.Libraryd.Presentation.Actions
             Console.WriteLine(description);
             try
             {
-                var reservaQuery = _serviceProvider.BuildServiceProvider().GetService<ILibroQuery>();
                 var resultLibrosDisponibles = reservaQuery.GetAllLibroWithStock();
                 if (resultLibrosDisponibles.Count == 0)
                 {

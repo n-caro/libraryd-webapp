@@ -7,9 +7,10 @@ namespace PSoft.Libraryd.Presentation.Actions
 {
     class RegisterAlquilerAction : Action
     {
-        public RegisterAlquilerAction(IServiceCollection serviceProvider, string description)
-            : base(serviceProvider, description)
+        private IAlquilerServices alquilerService;
+        public RegisterAlquilerAction(IAlquilerServices alquilerService, string description) :base(description)
         {
+            this.alquilerService = alquilerService;
         }
 
         public override void runAction()
@@ -24,8 +25,7 @@ namespace PSoft.Libraryd.Presentation.Actions
                 string isbn = Console.ReadLine();
                 if (!validateAlquilerFields(isbn, idcliente))
                     throw new ArgumentException();
-                var createAlquiler = _serviceProvider.BuildServiceProvider().GetService<IAlquilerServices>();
-                createAlquiler.CreateAlquiler(new AlquilerDTO { Cliente = idcliente, ISBN = isbn });
+                alquilerService.CreateAlquiler(new AlquilerDTO { Cliente = idcliente, ISBN = isbn });
                 OutputColors.Sucess("Se ha registrado el alquiler con éxito.");
             }
             catch (Exception e)
