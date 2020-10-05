@@ -4,7 +4,7 @@ using PSoft.Libraryd.Domain.Entities;
 
 namespace PSoft.Libraryd.AcessData.Configurations
 {
-    class AlquilerConfiguration : IEntityTypeConfiguration<Alquiler>
+    public class AlquilerConfiguration : IEntityTypeConfiguration<Alquiler>
     {
         public void Configure(EntityTypeBuilder<Alquiler> builder)
         {

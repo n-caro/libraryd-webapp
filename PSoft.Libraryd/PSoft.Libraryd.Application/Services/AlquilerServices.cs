@@ -35,13 +35,14 @@ namespace PSoft.Libraryd.Application.Services
             };
             //save
             _repository.Add<Alquiler>(entity);
+            // discount Stock on Libro
             _libroRepository.LibroDiscountStock(alquiler.ISBN);
             return entity;
         }
 
         public Alquiler CreateReserva(AlquilerDTO reserva)
         {
-            // validate if Libro exists
+            // validate if Libro exists and has stock
             if (!_libroquery.LibroHasStock(reserva.ISBN)) throw new ArgumentException();
             // Check if Cliente Exist
             if (!_clienteQuery.ClienteExists(reserva.Cliente)) throw new ArgumentException();
@@ -56,6 +57,7 @@ namespace PSoft.Libraryd.Application.Services
                 ISBN = reserva.ISBN
             };
             _repository.Add<Alquiler>(entity);
+            _libroRepository.LibroDiscountStock(reserva.ISBN);
             return entity;
         }
     }

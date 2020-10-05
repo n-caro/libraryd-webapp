@@ -27,7 +27,7 @@ namespace PSoft.Libraryd.Presentation
             while (true)
             {
                 PrintTitle();
-                OutputColors.ColorGray("MENU -------------------------------eu-------");
+                OutputColors.ColorGray("MENU --------------------------------------");
                 for (int pos = 0; pos < ActionsList.Length; pos++)
                     Console.WriteLine("     {0}. {1}", pos + 1, ActionsList[pos].getDescription());
                 OutputColors.ColorGray("-------------------------------------------");

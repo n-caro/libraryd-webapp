@@ -4,7 +4,7 @@ using PSoft.Libraryd.Domain.Entities;
 
 namespace PSoft.Libraryd.AcessData.Configurations
 {
-    class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
+    public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
     {
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {

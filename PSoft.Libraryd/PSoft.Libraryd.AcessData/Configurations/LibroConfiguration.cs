@@ -4,7 +4,7 @@ using PSoft.Libraryd.Domain.Entities;
 
 namespace PSoft.Libraryd.AcessData.Configurations
 {
-    class LibroConfiguration : IEntityTypeConfiguration<Libro>
+    public class LibroConfiguration : IEntityTypeConfiguration<Libro>
     {
         public void Configure(EntityTypeBuilder<Libro> builder)
         {
