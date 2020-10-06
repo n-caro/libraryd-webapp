@@ -22,8 +22,6 @@ namespace PSoft.Libraryd.Presentation.Actions
                 int idcliente = int.TryParse(Console.ReadLine(), out idcliente) ? idcliente : -1;
                 Console.WriteLine("ISBN del libro: ");
                 string isbn = Console.ReadLine();
-                if (!validateAlquilerFields(isbn, idcliente))
-                    throw new ArgumentException();
                 alquilerService.CreateAlquiler(new AlquilerDTO { Cliente = idcliente, ISBN = isbn });
                 OutputColors.Sucess("Se ha registrado el alquiler con éxito.");
             }
@@ -37,12 +35,6 @@ namespace PSoft.Libraryd.Presentation.Actions
                 Console.ReadKey(false);
                 Console.Clear();
             }
-        }
-        private static bool validateAlquilerFields(string isbn, int idcliente)
-        {
-            if (isbn == "" || idcliente <= 0)
-                return false;
-            return true;
         }
     }
 }

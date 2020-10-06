@@ -8,6 +8,7 @@ namespace PSoft.Libraryd.Domain.Queries
         ResponseGetLibroByISBN GetLibroByISBN(string ISBN);
         List<ResponseGetAllLibroWithStock> GetAllLibroWithStock();
 
+        bool LibroExists(string ISBN);
         bool LibroHasStock(string ISBN);
     }
 }

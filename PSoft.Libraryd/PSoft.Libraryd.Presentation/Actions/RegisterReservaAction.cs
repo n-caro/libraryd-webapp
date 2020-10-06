@@ -24,9 +24,6 @@ namespace PSoft.Libraryd.Presentation.Actions
                 int idcliente = int.TryParse(Console.ReadLine(), out idcliente) ? idcliente : -1;
                 Console.WriteLine("Fecha de reserva: ");
                 DateTime fechaReserva = DateTime.TryParse(Console.ReadLine(), out fechaReserva) ? fechaReserva : DateTime.MinValue;
-                // validator
-                if (!validateReservaFields(isbn, idcliente, fechaReserva))
-                    throw new ArgumentException();
                 alquilerService.CreateReserva(new AlquilerDTO { Cliente = idcliente, ISBN = isbn, FechaReserva = fechaReserva });
                 OutputColors.Sucess("La reserva ha sido registrado con exito.");
             }
@@ -40,14 +37,6 @@ namespace PSoft.Libraryd.Presentation.Actions
                 Console.ReadKey(false);
                 Console.Clear();
             }
-        }
-        private static bool validateReservaFields(string isbn, int idcliente, DateTime fechaReserva)
-        {
-            if (isbn == "" || idcliente <= 0)
-                return false;
-            if (fechaReserva == DateTime.MinValue || fechaReserva < DateTime.Now.Date)
-                return false;
-            return true;
         }
     }
 }

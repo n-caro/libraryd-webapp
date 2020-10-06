@@ -44,10 +44,16 @@ namespace PSoft.Libraryd.AcessData.Queries
 
         public bool LibroHasStock(string ISBN)
         {
-            var query = _dbContext.Libros.Where(l => l.ISBN == ISBN).FirstOrDefault();
-            if (query == null) return false; //avoid
-            if (query.Stock > 0) return true;
-            return false;
+            var db = new QueryFactory(connection, sqlKataCompiler);
+            var query = db.Query("Libros").Where("ISBN", "=", ISBN).FirstOrDefault();
+            if (query == null) return false;
+            return (query.Stock > 0);
+        }
+        public bool LibroExists(string ISBN)
+        {
+            var db = new QueryFactory(connection, sqlKataCompiler);
+            var query = db.Query("Libros").Where("ISBN", "=", ISBN).FirstOrDefault();
+            return (query == null);
         }
     }
 }

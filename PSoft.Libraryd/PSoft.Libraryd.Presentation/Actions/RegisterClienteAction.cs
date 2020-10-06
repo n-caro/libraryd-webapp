@@ -27,8 +27,6 @@ namespace PSoft.Libraryd.Presentation.Actions
                 dni = Console.ReadLine();
                 Console.WriteLine("Email: ");
                 email = Console.ReadLine();
-                if (!validateClienteFields(nombre, apellido, dni, email))
-                    throw new ArgumentException();
                 clienteservice.CreateCliente(new ClienteDTO { Nombre = nombre, Apellido = apellido, DNI = dni, Email = email });
                 OutputColors.Sucess("El cliente ha sido registrado con exito.");
             }
@@ -42,12 +40,6 @@ namespace PSoft.Libraryd.Presentation.Actions
                 Console.ReadKey(false);
                 Console.Clear();
             }
-        }
-        private static bool validateClienteFields(string nombre, string apellido, string dni, string email)
-        {
-            if ((nombre == "" | apellido == "" | dni == "" | email == ""))
-                return false;
-            return ValidatorActionFields.validateEmail(email);
         }
     }
 }
