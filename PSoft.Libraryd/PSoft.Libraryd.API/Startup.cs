@@ -1,16 +1,26 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PSoft.Libraryd.AcessData;
+using PSoft.Libraryd.AcessData.Commands;
+using PSoft.Libraryd.AcessData.Queries;
+using PSoft.Libraryd.Application.Services;
+using PSoft.Libraryd.Domain.Commands;
+using PSoft.Libraryd.Domain.Queries;
+using SqlKata.Compilers;
 
 namespace PSoft.Libraryd.API
 {
@@ -27,6 +37,9 @@ namespace PSoft.Libraryd.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            // dbContext
+            var connectionString = Configuration.GetSection("ConnectionString").Value; //avoid
+            services.AddDbContext<LibrarydDbContext>(options => options.UseSqlServer(connectionString));
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -44,6 +57,23 @@ namespace PSoft.Libraryd.API
                     }
                 });
             });
+
+            // SqlKata
+            services.AddTransient<Compiler, SqlServerCompiler>();
+            services.AddTransient<IDbConnection>(b =>
+            {
+                return new SqlConnection(connectionString);
+            });
+
+            // Dependency Inyections
+            services.AddTransient<IGenericsRepository, GenericsRepository>();
+            // ClienteService
+            services.AddTransient<IClienteService, ClienteService>();
+            services.AddTransient<IClienteQuery, ClienteQuery>();
+            //services.AddTransient<ILibroRepository, LibroRepository>();
+            //services.AddTransient<IAlquilerServices, AlquilerServices>();
+            //services.AddTransient<ILibroQuery, LibroQuery>();
+            //services.AddTransient<IReservaQuery, ReservaQuery>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

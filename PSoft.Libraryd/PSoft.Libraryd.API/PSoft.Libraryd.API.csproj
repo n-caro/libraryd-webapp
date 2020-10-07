@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PSoft.Libraryd.AcessData\PSoft.Libraryd.AcessData.csproj" />
     <ProjectReference Include="..\PSoft.Libraryd.Application\PSoft.Libraryd.Application.csproj" />
   </ItemGroup>
 
