@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PSoft.Libraryd.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.AcessData.Configurations
 {
-    class AlquilerConfiguration : IEntityTypeConfiguration<Alquiler>
+    public class AlquilerConfiguration : IEntityTypeConfiguration<Alquiler>
     {
         public void Configure(EntityTypeBuilder<Alquiler> builder)
         {

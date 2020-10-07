@@ -3,8 +3,6 @@ using PSoft.Libraryd.Domain.DTOs;
 using PSoft.Libraryd.Domain.Entities;
 using PSoft.Libraryd.Domain.Queries;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.Application.Services
 {
@@ -23,10 +21,7 @@ namespace PSoft.Libraryd.Application.Services
         }
         public Alquiler CreateAlquiler(AlquilerDTO alquiler)
         {
-            // Check if Libro has stock (and Exists)
-            if (!_libroquery.LibroHasStock(alquiler.ISBN)) throw new ArgumentException();
-            // Check if Cliente Exist
-            if (!_clienteQuery.ClienteExists(alquiler.Cliente)) throw new ArgumentException();
+            ValidateAlquilerDTO(alquiler);
             var entity = new Alquiler
             {
                 FechaAlquiler = DateTime.Now,
@@ -35,7 +30,6 @@ namespace PSoft.Libraryd.Application.Services
                 FechaDevolucion = DateTime.Now.AddDays(7),
                 ISBN = alquiler.ISBN
             };
-            //save
             _repository.Add<Alquiler>(entity);
             _libroRepository.LibroDiscountStock(alquiler.ISBN);
             return entity;
@@ -43,12 +37,8 @@ namespace PSoft.Libraryd.Application.Services
 
         public Alquiler CreateReserva(AlquilerDTO reserva)
         {
-            // validate if Libro exists
-            if (!_libroquery.LibroHasStock(reserva.ISBN)) throw new ArgumentException();
-            // Check if Cliente Exist
-            if (!_clienteQuery.ClienteExists(reserva.Cliente)) throw new ArgumentException();
-            // Check if Date is valid
-            if(reserva.FechaReserva < DateTime.Today) throw new ArgumentException();
+            ValidateAlquilerDTO(reserva);
+            if (reserva.FechaReserva < DateTime.Today) throw new ArgumentException("Fecha no valida");
 
             var entity = new Alquiler
             {
@@ -58,7 +48,15 @@ namespace PSoft.Libraryd.Application.Services
                 ISBN = reserva.ISBN
             };
             _repository.Add<Alquiler>(entity);
+            _libroRepository.LibroDiscountStock(reserva.ISBN);
             return entity;
+        }
+
+        private void ValidateAlquilerDTO(AlquilerDTO alquiler)
+        {
+            if (!_clienteQuery.ClienteExists(alquiler.Cliente)) throw new ArgumentException("Cliente no existente");
+            if (!_libroquery.LibroExists(alquiler.ISBN)) throw new ArgumentException("ISBN no válido");
+            if (!_libroquery.LibroHasStock(alquiler.ISBN)) throw new ArgumentException("Libro no tiene stock disponible");
         }
     }
 }

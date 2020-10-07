@@ -2,8 +2,7 @@
 using PSoft.Libraryd.Domain.DTOs;
 using PSoft.Libraryd.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PSoft.Libraryd.Application.Services
 {
@@ -16,6 +15,7 @@ namespace PSoft.Libraryd.Application.Services
         }
         public Cliente CreateCliente(ClienteDTO cliente)
         {
+            ValidateClienteDTO(cliente);
             var entity = new Cliente
             {
                 Nombre = cliente.Nombre,
@@ -26,5 +26,16 @@ namespace PSoft.Libraryd.Application.Services
             _repository.Add<Cliente>(entity);
             return entity;
         }
+
+        private void ValidateClienteDTO(ClienteDTO cliente)
+        {
+            if (cliente.Nombre == "" || cliente.Apellido == "" || cliente.DNI == "" || cliente.Email == "")
+                throw new ArgumentException("No se aceptan campos vacios.");
+            // validateEmail
+            string patternEmail = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            if(Regex.IsMatch(cliente.Email, patternEmail))
+                throw new ArgumentException("No se ingreso un correo valido.");
+        }
+
     }
 }

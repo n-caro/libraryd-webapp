@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PSoft.Libraryd.Domain.Entities;
 using PSoft.Libraryd.AcessData.Configurations;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using PSoft.Libraryd.Domain.Entities;
 
 namespace PSoft.Libraryd.AcessData
 {

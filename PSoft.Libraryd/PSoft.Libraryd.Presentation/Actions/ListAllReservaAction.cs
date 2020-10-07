@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using PSoft.Libraryd.Domain.DTOs;
+﻿using PSoft.Libraryd.Domain.DTOs;
 using PSoft.Libraryd.Domain.Queries;
 using System;
 
@@ -7,9 +6,10 @@ namespace PSoft.Libraryd.Presentation.Actions
 {
     class ListAllReservaAction : Action
     {
-        public ListAllReservaAction(IServiceCollection serviceProvider, string description)
-            : base(serviceProvider, description)
+        private IReservaQuery reservaQuery;
+        public ListAllReservaAction(IReservaQuery reservaQuery, string description) : base(description)
         {
+            this.reservaQuery = reservaQuery;
         }
 
         public override void runAction()
@@ -18,7 +18,6 @@ namespace PSoft.Libraryd.Presentation.Actions
             Console.WriteLine(description);
             try
             {
-                var reservaQuery = _serviceProvider.BuildServiceProvider().GetService<IReservaQuery>();
                 var resultsreservas = reservaQuery.GetAllReserva();
                 if (resultsreservas.Count == 0)
                 {
@@ -26,7 +25,7 @@ namespace PSoft.Libraryd.Presentation.Actions
                 }
                 else
                 {
-                    foreach(var reserva in resultsreservas)
+                    foreach (var reserva in resultsreservas)
                     {
                         printReserva(reserva);
                     }

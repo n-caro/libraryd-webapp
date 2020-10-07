@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PSoft.Libraryd.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.AcessData.Configurations
 {
-    class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
+    public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
     {
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
@@ -23,6 +20,8 @@ namespace PSoft.Libraryd.AcessData.Configurations
             builder.Property(s => s.Email)
                 .IsRequired()
                 .HasMaxLength(45);
+            // AK fields
+            builder.HasAlternateKey(c => new { c.DNI, c.Email });
         }
     }
 }

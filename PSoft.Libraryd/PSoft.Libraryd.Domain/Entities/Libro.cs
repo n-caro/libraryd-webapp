@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PSoft.Libraryd.Domain.Entities
+﻿namespace PSoft.Libraryd.Domain.Entities
 {
     public class Libro
     {
@@ -12,6 +8,6 @@ namespace PSoft.Libraryd.Domain.Entities
         public string Editorial { get; set; }
         public string Edicion { get; set; }
         public int? Stock { get; set; }
-        public string  Imagen { get; set; }
+        public string Imagen { get; set; }
     }
 }

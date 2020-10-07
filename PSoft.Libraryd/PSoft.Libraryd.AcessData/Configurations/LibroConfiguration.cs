@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PSoft.Libraryd.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PSoft.Libraryd.AcessData.Configurations
 {
-    class LibroConfiguration : IEntityTypeConfiguration<Libro>
+    public class LibroConfiguration : IEntityTypeConfiguration<Libro>
     {
         public void Configure(EntityTypeBuilder<Libro> builder)
         {
@@ -36,7 +33,8 @@ namespace PSoft.Libraryd.AcessData.Configurations
 
             // PRELOAD DATA: Libros
             builder.HasData(
-                new Libro {
+                new Libro
+                {
                     Autor = "Ian Gorton",
                     Edicion = "Second Edition",
                     Editorial = "Springer",
@@ -55,14 +53,15 @@ namespace PSoft.Libraryd.AcessData.Configurations
                     Stock = 8,
                     Titulo = "Organización y Arquitectura de Computadores"
                 },
-                new Libro {
-                    Autor= "Davis, Stephen R",
+                new Libro
+                {
+                    Autor = "Davis, Stephen R",
                     Edicion = "2001",
                     Editorial = "Hungry Minds Inc",
                     Imagen = "",
                     ISBN = "9780764508141",
                     Stock = 2,
-                    Titulo= "C# for Dummies"
+                    Titulo = "C# for Dummies"
                 },
                 new Libro
                 {

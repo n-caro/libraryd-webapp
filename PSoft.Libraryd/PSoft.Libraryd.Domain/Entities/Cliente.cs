@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PSoft.Libraryd.Domain.Entities
+﻿namespace PSoft.Libraryd.Domain.Entities
 {
     public class Cliente
     {
