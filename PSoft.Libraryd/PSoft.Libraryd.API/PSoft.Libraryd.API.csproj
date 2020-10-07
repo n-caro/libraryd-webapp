@@ -8,5 +8,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PSoft.Libraryd.Application\PSoft.Libraryd.Application.csproj" />
+  </ItemGroup>
+
 
 </Project>
