@@ -32,9 +32,9 @@ namespace PSoft.Libraryd.Application.Services
             return entity;
         }
 
-        public List<ResponseClienteDTO> GetAllClientes()
+        public List<ResponseClienteDTO> GetClientes(string nombre, string apellido, string dni)
         {
-            return _clienteQuery.GetAllCliente();
+            return _clienteQuery.GetClientes(nombre, apellido, dni);
         }
 
         private void ValidateClienteDTO(ClienteDTO cliente)

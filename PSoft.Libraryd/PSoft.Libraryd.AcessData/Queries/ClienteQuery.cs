@@ -27,10 +27,13 @@ namespace PSoft.Libraryd.AcessData.Queries
             return true;
         }
 
-        public List<ResponseClienteDTO> GetAllCliente()
+        public List<ResponseClienteDTO> GetClientes(string nombre, string apellido, string dni)
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
-            var query = db.Query("Clientes");
+            var query = db.Query("Clientes")
+                .When(!string.IsNullOrEmpty(nombre), q => q.Where("Nombre", "=", nombre))
+                .When(!string.IsNullOrEmpty(apellido), q => q.Where("Apellido", "=", apellido))
+                .When(!string.IsNullOrEmpty(dni), q => q.Where("DNI", "=", dni));
             var result = query.Get<ResponseClienteDTO>();
             return result.ToList();
         }

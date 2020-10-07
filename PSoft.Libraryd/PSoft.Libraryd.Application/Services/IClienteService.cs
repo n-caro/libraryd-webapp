@@ -8,6 +8,6 @@ namespace PSoft.Libraryd.Application.Services
     {
         Cliente CreateCliente(ClienteDTO cliente);
 
-        List<ResponseClienteDTO> GetAllClientes();
+        List<ResponseClienteDTO> GetClientes(string nombre, string apellido, string dni);
     }
 }

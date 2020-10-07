@@ -6,6 +6,6 @@ namespace PSoft.Libraryd.Domain.Queries
     public interface IClienteQuery
     {
         bool ClienteExists(int ClienteId);
-        List<ResponseClienteDTO> GetAllCliente();
+        List<ResponseClienteDTO> GetClientes(string nombre, string apellido, string dni);
     }
 }

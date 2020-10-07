@@ -23,11 +23,11 @@ namespace PSoft.Libraryd.API.Controllers
 
         // GET: api/<ClientesController>
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetClientes([FromQuery] string nombre, [FromQuery] string apellido, [FromQuery] string dni)
         {
             try
             {
-                return new JsonResult(_service.GetAllClientes()) { StatusCode = 200 };
+                return new JsonResult(_service.GetClientes(nombre, apellido, dni)) { StatusCode = 200 };
             }
             catch (Exception e)
             {
@@ -37,7 +37,7 @@ namespace PSoft.Libraryd.API.Controllers
 
         // POST: api/<ClientesController>
         [HttpPost()]
-        public IActionResult Post([FromBody]ClienteDTO clienteDTO)
+        public IActionResult Post(ClienteDTO clienteDTO)
         {
             try
             {
