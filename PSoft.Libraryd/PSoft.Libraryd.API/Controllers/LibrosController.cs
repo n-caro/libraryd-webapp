@@ -17,9 +17,8 @@ namespace PSoft.Libraryd.API.Controllers
             _service = service;
         }
 
-        // GET: api/<ClientesController>
         [HttpGet]
-        public IActionResult GetClientes([FromQuery] bool? stock, [FromQuery] string autor, [FromQuery] string titulo)
+        public IActionResult GetLibrosClientes([FromQuery] bool? stock, [FromQuery] string autor, [FromQuery] string titulo)
         {
             try
             {
