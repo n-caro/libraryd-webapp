@@ -74,7 +74,11 @@ namespace PSoft.Libraryd.API
             services.AddTransient<ILibroService, LibroService>();
             services.AddTransient<ILibroRepository, LibroRepository>();
             services.AddTransient<ILibroQuery, LibroQuery>();
-            //services.AddTransient<IAlquilerServices, AlquilerServices>();
+            // Alquiler
+            services.AddTransient<IAlquilerServices, AlquilerServices>();
+            services.AddTransient<IAlquilerQuery, AlquilerQuery>();
+            services.AddTransient<IAlquilerRepository, AlquilerRepository>();
+
             //services.AddTransient<IReservaQuery, ReservaQuery>();
         }
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PSoft.Libraryd.AcessData.Migrations
 {
-    public partial class libraryddatabase : Migration
+    public partial class libraryddbv2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,8 +65,7 @@ namespace PSoft.Libraryd.AcessData.Migrations
                     Estado = table.Column<int>(nullable: false),
                     FechaAlquiler = table.Column<DateTime>(type: "Date", nullable: true),
                     FechaReserva = table.Column<DateTime>(type: "Date", nullable: true),
-                    FechaDevolucion = table.Column<DateTime>(type: "Date", nullable: true),
-                    LibroISBN = table.Column<string>(nullable: true)
+                    FechaDevolucion = table.Column<DateTime>(type: "Date", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -84,11 +83,11 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         principalColumn: "EstadoId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Alquileres_Libros_LibroISBN",
-                        column: x => x.LibroISBN,
+                        name: "FK_Alquileres_Libros_ISBN",
+                        column: x => x.ISBN,
                         principalTable: "Libros",
                         principalColumn: "ISBN",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -125,9 +124,9 @@ namespace PSoft.Libraryd.AcessData.Migrations
                 column: "Estado");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alquileres_LibroISBN",
+                name: "IX_Alquileres_ISBN",
                 table: "Alquileres",
-                column: "LibroISBN");
+                column: "ISBN");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

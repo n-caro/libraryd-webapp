@@ -16,5 +16,6 @@ namespace PSoft.Libraryd.Domain.DTOs
         public string LibroAutor { get; set; }
         public string LibroEdicion { get; set; }
         public string LibroEditorial { get; set; }
+        public string LibroImagen { get; set; }
     }
 }

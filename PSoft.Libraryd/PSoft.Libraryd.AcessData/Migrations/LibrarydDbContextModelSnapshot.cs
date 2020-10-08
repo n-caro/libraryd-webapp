@@ -48,16 +48,13 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("LibroISBN")
-                        .HasColumnType("nvarchar(50)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
                     b.HasIndex("EstadoId");
 
-                    b.HasIndex("LibroISBN");
+                    b.HasIndex("ISBN");
 
                     b.ToTable("Alquileres");
                 });
@@ -248,7 +245,9 @@ namespace PSoft.Libraryd.AcessData.Migrations
 
                     b.HasOne("PSoft.Libraryd.Domain.Entities.Libro", "Libro")
                         .WithMany()
-                        .HasForeignKey("LibroISBN");
+                        .HasForeignKey("ISBN")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
