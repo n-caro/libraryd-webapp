@@ -53,7 +53,8 @@ namespace PSoft.Libraryd.AcessData.Queries
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
             var query = db.Query("Libros").Where("ISBN", "=", ISBN).FirstOrDefault();
-            return (query == null);
+            if(query == null) return false;
+            return true;
         }
     }
 }
