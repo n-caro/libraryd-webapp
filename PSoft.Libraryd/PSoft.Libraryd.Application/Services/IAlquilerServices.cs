@@ -12,5 +12,7 @@ namespace PSoft.Libraryd.Application.Services
         List<ResponseAlquilerDTO> GetAlquileres(int estado);
 
         ResponseGetAlquileresByCliente GetAlquileresByCliente(int id);
+
+        bool UpdateAlquiler(RequestAlquilerUpdate alquilerUpdate);
     }
 }

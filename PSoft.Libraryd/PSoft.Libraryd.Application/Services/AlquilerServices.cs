@@ -4,6 +4,7 @@ using PSoft.Libraryd.Domain.Entities;
 using PSoft.Libraryd.Domain.Queries;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace PSoft.Libraryd.Application.Services
 {
@@ -14,20 +15,25 @@ namespace PSoft.Libraryd.Application.Services
         private readonly ILibroQuery _libroquery;
         private readonly IClienteQuery _clienteQuery;
         private readonly IAlquilerQuery _alquilerQuery;
-        public AlquilerServices(IGenericsRepository repository, ILibroQuery libroquery, ILibroRepository libroRepository, IClienteQuery clienteQuery, IAlquilerQuery alquilerQuery)
+        private readonly IAlquilerRepository _alquilerRepository;
+        public AlquilerServices(IGenericsRepository repository, ILibroQuery libroquery, ILibroRepository libroRepository, IClienteQuery clienteQuery, IAlquilerQuery alquilerQuery, IAlquilerRepository alquilerRepository)
         {
             _repository = repository;
             _libroquery = libroquery;
             _libroRepository = libroRepository;
             _clienteQuery = clienteQuery;
             _alquilerQuery = alquilerQuery;
+            _alquilerRepository = alquilerRepository;
         }
         public Alquiler CreateAlquiler(AlquilerDTO alquiler)
         {
             ValidateAlquilerDTO(alquiler);
+            if (alquiler.FechaAlquiler.HasValue && alquiler.FechaAlquiler.Value < DateTime.Now) throw new ArgumentException("Fecha de Alquiler no valida");
+            if (!alquiler.FechaAlquiler.HasValue)
+                alquiler.FechaAlquiler = DateTime.Now;
             var entity = new Alquiler
             {
-                FechaAlquiler = DateTime.Now,
+                FechaAlquiler = alquiler.FechaAlquiler,
                 ClienteId = alquiler.Cliente,
                 EstadoId = 2,
                 FechaDevolucion = DateTime.Now.AddDays(7),
@@ -41,7 +47,8 @@ namespace PSoft.Libraryd.Application.Services
         public Alquiler CreateReserva(AlquilerDTO reserva)
         {
             ValidateAlquilerDTO(reserva);
-            if (reserva.FechaReserva < DateTime.Today) throw new ArgumentException("Fecha no valida");
+            if(!reserva.FechaReserva.HasValue) throw new ArgumentException("Fecha de Reserva es requerida como parametro.");
+            if (reserva.FechaReserva.Value < DateTime.Today) throw new ArgumentException("Fecha de Reserva no valida.");
 
             var entity = new Alquiler
             {
@@ -63,6 +70,11 @@ namespace PSoft.Libraryd.Application.Services
         public ResponseGetAlquileresByCliente GetAlquileresByCliente(int id)
         {
             return _alquilerQuery.GetByCliente(id);
+        }
+
+        public bool UpdateAlquiler(RequestAlquilerUpdate alquilerUpdate)
+        {
+            return _alquilerRepository.UpdateAlquiler(alquilerUpdate);
         }
 
         private void ValidateAlquilerDTO(AlquilerDTO alquiler)

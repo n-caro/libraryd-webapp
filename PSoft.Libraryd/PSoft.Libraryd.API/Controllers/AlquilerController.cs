@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PSoft.Libraryd.Application.Services;
+using PSoft.Libraryd.Domain.DTOs;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -50,5 +51,39 @@ namespace PSoft.Libraryd.API.Controllers
             }
         }
 
+        // POST: api/<ClientesController>
+        [HttpPost()]
+        public IActionResult Post(AlquilerDTO alquiler)
+        {
+            try
+            {
+                if (alquiler.FechaReserva.HasValue)
+                {
+                    return new JsonResult(_service.CreateReserva(alquiler)) { StatusCode = 201 };
+                }
+                else
+                {
+                    return new JsonResult(_service.CreateAlquiler(alquiler)) { StatusCode = 201 };
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        // PUT
+        [HttpPut()]
+        public IActionResult Put([Required]RequestAlquilerUpdate alquilerUpdate)
+        {
+            try
+            {
+                //bool result = _service.UpdateAlquiler(alquilerUpdate);
+                return new JsonResult(_service.UpdateAlquiler(alquilerUpdate)) { StatusCode = 204 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

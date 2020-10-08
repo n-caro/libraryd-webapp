@@ -10,8 +10,8 @@ using PSoft.Libraryd.AcessData;
 namespace PSoft.Libraryd.AcessData.Migrations
 {
     [DbContext(typeof(LibrarydDbContext))]
-    [Migration("20201005071704_libraryd-database")]
-    partial class libraryddatabase
+    [Migration("20201008061339_libraryd-db-v2")]
+    partial class libraryddbv2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,16 +50,13 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("LibroISBN")
-                        .HasColumnType("nvarchar(50)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
                     b.HasIndex("EstadoId");
 
-                    b.HasIndex("LibroISBN");
+                    b.HasIndex("ISBN");
 
                     b.ToTable("Alquileres");
                 });
@@ -250,7 +247,9 @@ namespace PSoft.Libraryd.AcessData.Migrations
 
                     b.HasOne("PSoft.Libraryd.Domain.Entities.Libro", "Libro")
                         .WithMany()
-                        .HasForeignKey("LibroISBN");
+                        .HasForeignKey("ISBN")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

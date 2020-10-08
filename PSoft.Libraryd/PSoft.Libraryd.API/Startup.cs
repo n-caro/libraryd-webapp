@@ -77,6 +77,7 @@ namespace PSoft.Libraryd.API
             // Alquiler
             services.AddTransient<IAlquilerServices, AlquilerServices>();
             services.AddTransient<IAlquilerQuery, AlquilerQuery>();
+            services.AddTransient<IAlquilerRepository, AlquilerRepository>();
 
             //services.AddTransient<IReservaQuery, ReservaQuery>();
         }
