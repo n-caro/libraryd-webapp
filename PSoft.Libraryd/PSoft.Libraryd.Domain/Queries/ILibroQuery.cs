@@ -10,5 +10,7 @@ namespace PSoft.Libraryd.Domain.Queries
 
         bool LibroExists(string ISBN);
         bool LibroHasStock(string ISBN);
+
+        List<ResponseLibroDTO> GetLibros(bool? stock, string autor, string titulo);
     }
 }
