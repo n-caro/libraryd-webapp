@@ -3,6 +3,7 @@ using PSoft.Libraryd.Domain.DTOs;
 using PSoft.Libraryd.Domain.Entities;
 using PSoft.Libraryd.Domain.Queries;
 using System;
+using System.Collections.Generic;
 
 namespace PSoft.Libraryd.Application.Services
 {
@@ -12,12 +13,14 @@ namespace PSoft.Libraryd.Application.Services
         private readonly ILibroRepository _libroRepository;
         private readonly ILibroQuery _libroquery;
         private readonly IClienteQuery _clienteQuery;
-        public AlquilerServices(IGenericsRepository repository, ILibroQuery libroquery, ILibroRepository libroRepository, IClienteQuery clienteQuery)
+        private readonly IAlquilerQuery _alquilerQuery;
+        public AlquilerServices(IGenericsRepository repository, ILibroQuery libroquery, ILibroRepository libroRepository, IClienteQuery clienteQuery, IAlquilerQuery alquilerQuery)
         {
             _repository = repository;
             _libroquery = libroquery;
             _libroRepository = libroRepository;
             _clienteQuery = clienteQuery;
+            _alquilerQuery = alquilerQuery;
         }
         public Alquiler CreateAlquiler(AlquilerDTO alquiler)
         {
@@ -26,7 +29,7 @@ namespace PSoft.Libraryd.Application.Services
             {
                 FechaAlquiler = DateTime.Now,
                 ClienteId = alquiler.Cliente,
-                EstadoId = 1,
+                EstadoId = 2,
                 FechaDevolucion = DateTime.Now.AddDays(7),
                 ISBN = alquiler.ISBN
             };
@@ -44,12 +47,22 @@ namespace PSoft.Libraryd.Application.Services
             {
                 FechaReserva = reserva.FechaReserva,
                 ClienteId = reserva.Cliente,
-                EstadoId = 2,
+                EstadoId = 1,
                 ISBN = reserva.ISBN
             };
             _repository.Add<Alquiler>(entity);
             _libroRepository.LibroDiscountStock(reserva.ISBN);
             return entity;
+        }
+
+        public List<ResponseAlquilerDTO> GetAlquileres(int estado)
+        {
+            return _alquilerQuery.GetAlquileres(estado);
+        }
+
+        public ResponseGetAlquileresByCliente GetAlquileresByCliente(int id)
+        {
+            return _alquilerQuery.GetByCliente(id);
         }
 
         private void ValidateAlquilerDTO(AlquilerDTO alquiler)
