@@ -43,7 +43,7 @@ namespace PSoft.Libraryd.Application.Services
                 throw new ArgumentException("No se aceptan campos vacios.");
             // validateEmail
             string patternEmail = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
-            if(!Regex.IsMatch(cliente.Email, patternEmail))
+            if (!Regex.IsMatch(cliente.Email, patternEmail))
                 throw new ArgumentException("No se ingreso un correo valido.");
         }
 

@@ -4,7 +4,6 @@ using PSoft.Libraryd.Domain.Entities;
 using PSoft.Libraryd.Domain.Queries;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 
 namespace PSoft.Libraryd.Application.Services
 {
@@ -47,7 +46,7 @@ namespace PSoft.Libraryd.Application.Services
         public Alquiler CreateReserva(AlquilerDTO reserva)
         {
             ValidateAlquilerDTO(reserva);
-            if(!reserva.FechaReserva.HasValue) throw new ArgumentException("Fecha de Reserva es requerida como parametro.");
+            if (!reserva.FechaReserva.HasValue) throw new ArgumentException("Fecha de Reserva es requerida como parametro.");
             if (reserva.FechaReserva.Value < DateTime.Today) throw new ArgumentException("Fecha de Reserva no valida.");
 
             var entity = new Alquiler

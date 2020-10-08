@@ -1,9 +1,7 @@
 ﻿using PSoft.Libraryd.Domain.Commands;
 using PSoft.Libraryd.Domain.DTOs;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PSoft.Libraryd.AcessData.Commands
 {
@@ -18,7 +16,7 @@ namespace PSoft.Libraryd.AcessData.Commands
         public bool UpdateAlquiler(RequestAlquilerUpdate alquilerUpdate)
         {
             var entity = _dbContext.Alquileres.FirstOrDefault(a => a.ClienteId == alquilerUpdate.cliente && a.ISBN == alquilerUpdate.ISBN && a.EstadoId == 1);
-            if(entity == null) throw new Exception("Alquiler no encontrado");
+            if (entity == null) throw new Exception("Alquiler no encontrado");
             // update to Alquiler
             entity.EstadoId = 2;
             entity.FechaAlquiler = DateTime.Now;

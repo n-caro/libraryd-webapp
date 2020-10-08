@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -73,7 +69,7 @@ namespace PSoft.Libraryd.API.Controllers
         }
         // PUT
         [HttpPut()]
-        public IActionResult Put([Required]RequestAlquilerUpdate alquilerUpdate)
+        public IActionResult Put([Required] RequestAlquilerUpdate alquilerUpdate)
         {
             try
             {

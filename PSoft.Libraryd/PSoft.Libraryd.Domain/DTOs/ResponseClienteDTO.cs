@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PSoft.Libraryd.Domain.DTOs
+﻿namespace PSoft.Libraryd.Domain.DTOs
 {
     public class ResponseClienteDTO
     {

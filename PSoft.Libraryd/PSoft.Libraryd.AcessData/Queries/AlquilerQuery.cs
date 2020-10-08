@@ -2,11 +2,9 @@
 using PSoft.Libraryd.Domain.Queries;
 using SqlKata.Compilers;
 using SqlKata.Execution;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace PSoft.Libraryd.AcessData.Queries
 {
@@ -44,7 +42,7 @@ namespace PSoft.Libraryd.AcessData.Queries
                 .When(estado == 3, q => q.Where("Estado", "=", 3))
                 .Join("Libros", "Alquileres.ISBN", "Libros.ISBN");
 
-            var result = query.Get<ResponseAlquilerDTO>(); 
+            var result = query.Get<ResponseAlquilerDTO>();
             return result.ToList();
         }
 
