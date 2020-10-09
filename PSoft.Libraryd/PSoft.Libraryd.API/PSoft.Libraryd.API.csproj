@@ -18,5 +18,10 @@
     <ProjectReference Include="..\PSoft.Libraryd.Application\PSoft.Libraryd.Application.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
 
 </Project>

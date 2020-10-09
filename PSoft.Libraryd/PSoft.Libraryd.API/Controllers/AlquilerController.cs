@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PSoft.Libraryd.API.Controllers
 {
@@ -19,6 +19,11 @@ namespace PSoft.Libraryd.API.Controllers
         }
 
         // GET: api/<ClientesController>
+        /// <summary>
+        /// Finds Alquileres by estado
+        /// </summary>
+        /// <param name="estado"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetAlquileres([FromQuery][Required] int estado)
         {
@@ -32,8 +37,12 @@ namespace PSoft.Libraryd.API.Controllers
             }
         }
 
-
         // GET: api/<ClientesController>/cliente/id
+        /// <summary>
+        /// Get Alquileres by Cliente Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("cliente/{id?}")]
         public IActionResult Get(int id)
         {
@@ -48,6 +57,11 @@ namespace PSoft.Libraryd.API.Controllers
         }
 
         // POST: api/<ClientesController>
+        /// <summary>
+        /// Create a Alquiler or Reserva
+        /// </summary>
+        /// <param name="alquiler"></param>
+        /// <returns></returns>
         [HttpPost()]
         public IActionResult Post(AlquilerDTO alquiler)
         {
@@ -67,7 +81,11 @@ namespace PSoft.Libraryd.API.Controllers
                 return BadRequest(e.Message);
             }
         }
-        // PUT
+        /// <summary>
+        /// Update Reserva into Alquiler.
+        /// </summary>
+        /// <param name="alquilerUpdate"></param>
+        /// <returns></returns>
         [HttpPut()]
         public IActionResult Put([Required] RequestAlquilerUpdate alquilerUpdate)
         {

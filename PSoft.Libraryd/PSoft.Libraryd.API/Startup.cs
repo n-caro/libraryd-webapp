@@ -15,6 +15,8 @@ using SqlKata.Compilers;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Reflection;
 
 namespace PSoft.Libraryd.API
 {
@@ -50,6 +52,10 @@ namespace PSoft.Libraryd.API
                         Url = new Uri("https://github.com/n-caro"),
                     }
                 });
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
             // SqlKata

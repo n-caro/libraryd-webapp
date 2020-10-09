@@ -10,7 +10,7 @@ using PSoft.Libraryd.AcessData;
 namespace PSoft.Libraryd.AcessData.Migrations
 {
     [DbContext(typeof(LibrarydDbContext))]
-    [Migration("20201008061339_libraryd-db-v2")]
+    [Migration("20201009004313_libraryd-db-v2")]
     partial class libraryddbv2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,10 @@ namespace PSoft.Libraryd.AcessData.Migrations
 
                     b.Property<int>("ClienteId")
                         .HasColumnName("Cliente")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Estado")
+                        .HasColumnName("Estado1")
                         .HasColumnType("int");
 
                     b.Property<int>("EstadoId")
@@ -54,7 +58,7 @@ namespace PSoft.Libraryd.AcessData.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.HasIndex("EstadoId");
+                    b.HasIndex("Estado");
 
                     b.HasIndex("ISBN");
 
@@ -239,11 +243,9 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PSoft.Libraryd.Domain.Entities.EstadoDeAlquiler", "Estado")
+                    b.HasOne("PSoft.Libraryd.Domain.Entities.EstadoDeAlquiler", "EstadoDeAlquiler")
                         .WithMany()
-                        .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Estado");
 
                     b.HasOne("PSoft.Libraryd.Domain.Entities.Libro", "Libro")
                         .WithMany()
