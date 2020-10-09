@@ -78,8 +78,11 @@ namespace PSoft.Libraryd.API
             services.AddTransient<IAlquilerServices, AlquilerServices>();
             services.AddTransient<IAlquilerQuery, AlquilerQuery>();
             services.AddTransient<IAlquilerRepository, AlquilerRepository>();
-
-            //services.AddTransient<IReservaQuery, ReservaQuery>();
+            // CORS
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -95,16 +98,14 @@ namespace PSoft.Libraryd.API
             app.UseRouting();
 
             app.UseAuthorization();
-
+            //cors 
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
-
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
