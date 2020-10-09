@@ -2,15 +2,16 @@
 
 namespace PSoft.Libraryd.Domain.DTOs
 {
-    public class ResponseGetAllReserva
+    public class ResponseAlquilerDTO
     {
-        // Reserva
-        public int ReservaID { get; set; }
-        public DateTime ReservaFecha { get; set; }
-        public int ClienteId { get; set; }
-        public string ClienteNombre { get; set; }
-        public string ClienteApellido { get; set; }
-        public string ClienteDNI { get; set; }
+        public int Id { get; set; }
+        public int Estado { get; set; }
+        public int ClienteID { get; set; }
+
+        public DateTime? FechaReserva { get; set; }
+        public DateTime? FechaAlquiler { get; set; }
+        public DateTime? FechaDevolucion { get; set; }
+        // Libro Info
         public string LibroISBN { get; set; }
         public string LibroTitulo { get; set; }
         public string LibroAutor { get; set; }

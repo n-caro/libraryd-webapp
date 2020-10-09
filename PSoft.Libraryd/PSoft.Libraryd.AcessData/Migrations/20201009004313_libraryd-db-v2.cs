@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PSoft.Libraryd.AcessData.Migrations
 {
-    public partial class libraryddatabase : Migration
+    public partial class libraryddbv2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -66,7 +66,7 @@ namespace PSoft.Libraryd.AcessData.Migrations
                     FechaAlquiler = table.Column<DateTime>(type: "Date", nullable: true),
                     FechaReserva = table.Column<DateTime>(type: "Date", nullable: true),
                     FechaDevolucion = table.Column<DateTime>(type: "Date", nullable: true),
-                    LibroISBN = table.Column<string>(nullable: true)
+                    Estado1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -78,17 +78,17 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Alquileres_EstadoDeAlquileres_Estado",
-                        column: x => x.Estado,
+                        name: "FK_Alquileres_EstadoDeAlquileres_Estado1",
+                        column: x => x.Estado1,
                         principalTable: "EstadoDeAlquileres",
                         principalColumn: "EstadoId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Alquileres_Libros_LibroISBN",
-                        column: x => x.LibroISBN,
+                        name: "FK_Alquileres_Libros_ISBN",
+                        column: x => x.ISBN,
                         principalTable: "Libros",
                         principalColumn: "ISBN",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -120,14 +120,14 @@ namespace PSoft.Libraryd.AcessData.Migrations
                 column: "Cliente");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alquileres_Estado",
+                name: "IX_Alquileres_Estado1",
                 table: "Alquileres",
-                column: "Estado");
+                column: "Estado1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alquileres_LibroISBN",
+                name: "IX_Alquileres_ISBN",
                 table: "Alquileres",
-                column: "LibroISBN");
+                column: "ISBN");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

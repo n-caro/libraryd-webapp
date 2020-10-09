@@ -30,6 +30,10 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         .HasColumnName("Cliente")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Estado")
+                        .HasColumnName("Estado1")
+                        .HasColumnType("int");
+
                     b.Property<int>("EstadoId")
                         .HasColumnName("Estado")
                         .HasColumnType("int");
@@ -48,16 +52,13 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("LibroISBN")
-                        .HasColumnType("nvarchar(50)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
-                    b.HasIndex("EstadoId");
+                    b.HasIndex("Estado");
 
-                    b.HasIndex("LibroISBN");
+                    b.HasIndex("ISBN");
 
                     b.ToTable("Alquileres");
                 });
@@ -240,15 +241,15 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PSoft.Libraryd.Domain.Entities.EstadoDeAlquiler", "Estado")
+                    b.HasOne("PSoft.Libraryd.Domain.Entities.EstadoDeAlquiler", "EstadoDeAlquiler")
                         .WithMany()
-                        .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Estado");
 
                     b.HasOne("PSoft.Libraryd.Domain.Entities.Libro", "Libro")
                         .WithMany()
-                        .HasForeignKey("LibroISBN");
+                        .HasForeignKey("ISBN")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

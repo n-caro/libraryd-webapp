@@ -2,6 +2,7 @@
 using PSoft.Libraryd.Domain.Queries;
 using SqlKata.Compilers;
 using SqlKata.Execution;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -53,8 +54,22 @@ namespace PSoft.Libraryd.AcessData.Queries
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
             var query = db.Query("Libros").Where("ISBN", "=", ISBN).FirstOrDefault();
-            if(query == null) return false;
+            if (query == null) return false;
             return true;
+        }
+
+        public List<ResponseLibroDTO> GetLibros(bool? stock, string autor, string titulo)
+        {
+            var db = new QueryFactory(connection, sqlKataCompiler);
+            var query = db.Query("Libros")
+                .When(stock.HasValue && stock.Value, q => q.Where("Stock", ">", 0))
+                .When(stock.HasValue && stock.Value == false, q => q.Where("Stock", "=", 0))
+                .When(!string.IsNullOrEmpty(autor), q => q.Where("Autor", "=", autor))
+                .When(!string.IsNullOrEmpty(titulo), q => q.Where("Titulo", "=", titulo));
+            var result = query.Get<ResponseLibroDTO>();
+            if (!result.Any())
+                throw new Exception("No se encontraron resultados.");
+            return result.ToList();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace PSoft.Libraryd.AcessData.Queries
         private readonly IDbConnection connection;
         private readonly Compiler sqlKataCompiler;
         private readonly LibrarydDbContext _dbContext;
-        private const int ESTADO_RESERVA_ID = 2;
+        private const int ESTADO_RESERVA_ID = 1;
 
         public ReservaQuery(IDbConnection connection, LibrarydDbContext dbContext, Compiler sqlKataCompiler)
         {

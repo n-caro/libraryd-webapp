@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSoft.Libraryd.Presentation", "PSoft.Libraryd.Presentation\PSoft.Libraryd.Presentation.csproj", "{9E84CEB7-367E-44F4-8A3B-42829A585092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSoft.Libraryd.Application", "PSoft.Libraryd.Application\PSoft.Libraryd.Application.csproj", "{F692BE8B-E739-4B67-9AA2-CBA304B20C09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSoft.Libraryd.Application", "PSoft.Libraryd.Application\PSoft.Libraryd.Application.csproj", "{F692BE8B-E739-4B67-9AA2-CBA304B20C09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSoft.Libraryd.Domain", "PSoft.Libraryd.Domain\PSoft.Libraryd.Domain.csproj", "{1BF76B26-A23B-4197-B8CB-AE2CB07DEA94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSoft.Libraryd.Domain", "PSoft.Libraryd.Domain\PSoft.Libraryd.Domain.csproj", "{1BF76B26-A23B-4197-B8CB-AE2CB07DEA94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSoft.Libraryd.AcessData", "PSoft.Libraryd.AcessData\PSoft.Libraryd.AcessData.csproj", "{03E3C1D6-2EC9-439C-BABC-173F9513DB31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSoft.Libraryd.AcessData", "PSoft.Libraryd.AcessData\PSoft.Libraryd.AcessData.csproj", "{03E3C1D6-2EC9-439C-BABC-173F9513DB31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSoft.Libraryd.API", "PSoft.Libraryd.API\PSoft.Libraryd.API.csproj", "{422D2E31-9DE2-4BA4-ABBD-606AE02E0945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9E84CEB7-367E-44F4-8A3B-42829A585092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E84CEB7-367E-44F4-8A3B-42829A585092}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E84CEB7-367E-44F4-8A3B-42829A585092}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E84CEB7-367E-44F4-8A3B-42829A585092}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F692BE8B-E739-4B67-9AA2-CBA304B20C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F692BE8B-E739-4B67-9AA2-CBA304B20C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F692BE8B-E739-4B67-9AA2-CBA304B20C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{03E3C1D6-2EC9-439C-BABC-173F9513DB31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03E3C1D6-2EC9-439C-BABC-173F9513DB31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03E3C1D6-2EC9-439C-BABC-173F9513DB31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{422D2E31-9DE2-4BA4-ABBD-606AE02E0945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{422D2E31-9DE2-4BA4-ABBD-606AE02E0945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{422D2E31-9DE2-4BA4-ABBD-606AE02E0945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{422D2E31-9DE2-4BA4-ABBD-606AE02E0945}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
