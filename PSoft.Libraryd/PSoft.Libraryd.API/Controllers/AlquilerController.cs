@@ -91,7 +91,6 @@ namespace PSoft.Libraryd.API.Controllers
         {
             try
             {
-                //bool result = _service.UpdateAlquiler(alquilerUpdate);
                 return new JsonResult(_service.UpdateAlquiler(alquilerUpdate)) { StatusCode = 204 };
             }
             catch (Exception e)

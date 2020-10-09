@@ -46,7 +46,7 @@ namespace PSoft.Libraryd.API.Controllers
         /// <param name="clienteDTO"></param>
         /// <returns></returns>
         [HttpPost()]
-        public IActionResult Post([Required]ClienteDTO clienteDTO)
+        public IActionResult Post([Required] ClienteDTO clienteDTO)
         {
             try
             {

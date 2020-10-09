@@ -40,7 +40,8 @@ namespace PSoft.Libraryd.Application.Services
             };
             _repository.Add<Alquiler>(entity);
             _libroRepository.LibroDiscountStock(alquiler.ISBN);
-            return new ResponseAlquiler { 
+            return new ResponseAlquiler
+            {
                 Id = entity.Id,
                 Cliente = entity.Cliente,
                 EstadoId = entity.EstadoId,
