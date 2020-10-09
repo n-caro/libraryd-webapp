@@ -78,6 +78,11 @@ namespace PSoft.Libraryd.API
             services.AddTransient<IAlquilerServices, AlquilerServices>();
             services.AddTransient<IAlquilerQuery, AlquilerQuery>();
             services.AddTransient<IAlquilerRepository, AlquilerRepository>();
+            // CORS
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,7 +98,8 @@ namespace PSoft.Libraryd.API
             app.UseRouting();
 
             app.UseAuthorization();
-
+            //cors 
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
