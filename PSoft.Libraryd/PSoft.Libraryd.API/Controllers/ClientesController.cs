@@ -36,7 +36,7 @@ namespace PSoft.Libraryd.API.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest(new { error = true, message = e.Message });
             }
         }
 
@@ -54,7 +54,7 @@ namespace PSoft.Libraryd.API.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest(new { error = true, message = e.Message });
             }
         }
     }
