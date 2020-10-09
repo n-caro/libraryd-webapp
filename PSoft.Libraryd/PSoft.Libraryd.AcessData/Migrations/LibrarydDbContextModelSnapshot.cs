@@ -30,6 +30,10 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         .HasColumnName("Cliente")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Estado")
+                        .HasColumnName("Estado1")
+                        .HasColumnType("int");
+
                     b.Property<int>("EstadoId")
                         .HasColumnName("Estado")
                         .HasColumnType("int");
@@ -52,7 +56,7 @@ namespace PSoft.Libraryd.AcessData.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.HasIndex("EstadoId");
+                    b.HasIndex("Estado");
 
                     b.HasIndex("ISBN");
 
@@ -237,11 +241,9 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PSoft.Libraryd.Domain.Entities.EstadoDeAlquiler", "Estado")
+                    b.HasOne("PSoft.Libraryd.Domain.Entities.EstadoDeAlquiler", "EstadoDeAlquiler")
                         .WithMany()
-                        .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Estado");
 
                     b.HasOne("PSoft.Libraryd.Domain.Entities.Libro", "Libro")
                         .WithMany()

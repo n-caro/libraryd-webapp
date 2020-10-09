@@ -65,7 +65,8 @@ namespace PSoft.Libraryd.AcessData.Migrations
                     Estado = table.Column<int>(nullable: false),
                     FechaAlquiler = table.Column<DateTime>(type: "Date", nullable: true),
                     FechaReserva = table.Column<DateTime>(type: "Date", nullable: true),
-                    FechaDevolucion = table.Column<DateTime>(type: "Date", nullable: true)
+                    FechaDevolucion = table.Column<DateTime>(type: "Date", nullable: true),
+                    Estado1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,11 +78,11 @@ namespace PSoft.Libraryd.AcessData.Migrations
                         principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Alquileres_EstadoDeAlquileres_Estado",
-                        column: x => x.Estado,
+                        name: "FK_Alquileres_EstadoDeAlquileres_Estado1",
+                        column: x => x.Estado1,
                         principalTable: "EstadoDeAlquileres",
                         principalColumn: "EstadoId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Alquileres_Libros_ISBN",
                         column: x => x.ISBN,
@@ -119,9 +120,9 @@ namespace PSoft.Libraryd.AcessData.Migrations
                 column: "Cliente");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alquileres_Estado",
+                name: "IX_Alquileres_Estado1",
                 table: "Alquileres",
-                column: "Estado");
+                column: "Estado1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Alquileres_ISBN",
