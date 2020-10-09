@@ -7,7 +7,7 @@ namespace PSoft.Libraryd.Application.Services
     public interface IAlquilerServices
     {
         ResponseAlquiler CreateAlquiler(AlquilerDTO alquiler);
-        Alquiler CreateReserva(AlquilerDTO reserva);
+        ResponseReserva CreateReserva(AlquilerDTO reserva);
 
         List<ResponseAlquilerDTO> GetAlquileres(int estado);
 

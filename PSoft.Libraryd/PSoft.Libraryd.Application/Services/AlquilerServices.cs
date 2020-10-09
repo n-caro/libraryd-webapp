@@ -43,14 +43,14 @@ namespace PSoft.Libraryd.Application.Services
             return new ResponseAlquiler { 
                 Id = entity.Id,
                 Cliente = entity.Cliente,
-                Estado = entity.Estado,
+                EstadoId = entity.EstadoId,
                 FechaAlquiler = entity.FechaAlquiler.Value,
                 FechaDevolucion = entity.FechaDevolucion.Value,
                 Libro = entity.Libro
             };
         }
 
-        public Alquiler CreateReserva(AlquilerDTO reserva)
+        public ResponseReserva CreateReserva(AlquilerDTO reserva)
         {
             ValidateAlquilerDTO(reserva);
             if (!reserva.FechaReserva.HasValue) throw new ArgumentException("Fecha de Reserva es requerida como parametro.");
@@ -65,7 +65,14 @@ namespace PSoft.Libraryd.Application.Services
             };
             _repository.Add<Alquiler>(entity);
             _libroRepository.LibroDiscountStock(reserva.ISBN);
-            return entity;
+            return new ResponseReserva
+            {
+                Id = entity.Id,
+                EstadoId = entity.EstadoId,
+                FechaReserva = entity.FechaReserva.Value,
+                Cliente = entity.Cliente,
+                Libro = entity.Libro
+            };
         }
 
         public List<ResponseAlquilerDTO> GetAlquileres(int estado)

@@ -10,7 +10,7 @@ using PSoft.Libraryd.AcessData;
 namespace PSoft.Libraryd.AcessData.Migrations
 {
     [DbContext(typeof(LibrarydDbContext))]
-    [Migration("20201008061339_libraryd-db-v2")]
+    [Migration("20201009002523_libraryd-db-v2")]
     partial class libraryddbv2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
