@@ -20,7 +20,7 @@ namespace PSoft.Libraryd.AcessData.Commands
             // update to Alquiler
             entity.EstadoId = 2;
             entity.FechaAlquiler = DateTime.Now;
-            entity.FechaAlquiler = DateTime.Now.AddDays(7);
+            entity.FechaDevolucion= DateTime.Now.AddDays(7);
             _dbContext.SaveChanges();
             return true;
         }

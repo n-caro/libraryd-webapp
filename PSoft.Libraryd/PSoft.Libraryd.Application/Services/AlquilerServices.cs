@@ -24,7 +24,7 @@ namespace PSoft.Libraryd.Application.Services
             _alquilerQuery = alquilerQuery;
             _alquilerRepository = alquilerRepository;
         }
-        public Alquiler CreateAlquiler(AlquilerDTO alquiler)
+        public ResponseAlquiler CreateAlquiler(AlquilerDTO alquiler)
         {
             ValidateAlquilerDTO(alquiler);
             if (alquiler.FechaAlquiler.HasValue && alquiler.FechaAlquiler.Value < DateTime.Now) throw new ArgumentException("Fecha de Alquiler no valida");
@@ -40,7 +40,14 @@ namespace PSoft.Libraryd.Application.Services
             };
             _repository.Add<Alquiler>(entity);
             _libroRepository.LibroDiscountStock(alquiler.ISBN);
-            return entity;
+            return new ResponseAlquiler { 
+                Id = entity.Id,
+                Cliente = entity.Cliente,
+                Estado = entity.Estado,
+                FechaAlquiler = entity.FechaAlquiler.Value,
+                FechaDevolucion = entity.FechaDevolucion.Value,
+                Libro = entity.Libro
+            };
         }
 
         public Alquiler CreateReserva(AlquilerDTO reserva)

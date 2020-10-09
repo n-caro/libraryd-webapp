@@ -2,6 +2,7 @@
 using PSoft.Libraryd.Domain.Queries;
 using SqlKata.Compilers;
 using SqlKata.Execution;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -35,6 +36,8 @@ namespace PSoft.Libraryd.AcessData.Queries
                 .When(!string.IsNullOrEmpty(apellido), q => q.Where("Apellido", "=", apellido))
                 .When(!string.IsNullOrEmpty(dni), q => q.Where("DNI", "=", dni));
             var result = query.Get<ResponseClienteDTO>();
+            if (!result.Any())
+                throw new Exception("No se encontraron resultados.");
             return result.ToList();
         }
     }

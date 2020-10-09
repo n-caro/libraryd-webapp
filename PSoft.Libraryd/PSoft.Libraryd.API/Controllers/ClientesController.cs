@@ -2,6 +2,7 @@
 using PSoft.Libraryd.Application.Services;
 using PSoft.Libraryd.Domain.DTOs;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,6 +20,13 @@ namespace PSoft.Libraryd.API.Controllers
 
 
         // GET: api/<ClientesController>
+        /// <summary>
+        /// Get All Clientes or optional find Clientes by nombre, apellido, dni
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="dni"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetClientes([FromQuery] string nombre, [FromQuery] string apellido, [FromQuery] string dni)
         {
@@ -32,9 +40,13 @@ namespace PSoft.Libraryd.API.Controllers
             }
         }
 
-        // POST: api/<ClientesController>
+        /// <summary>
+        /// Create a new Cliente
+        /// </summary>
+        /// <param name="clienteDTO"></param>
+        /// <returns></returns>
         [HttpPost()]
-        public IActionResult Post(ClienteDTO clienteDTO)
+        public IActionResult Post([Required]ClienteDTO clienteDTO)
         {
             try
             {

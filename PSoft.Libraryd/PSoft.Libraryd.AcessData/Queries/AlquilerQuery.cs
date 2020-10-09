@@ -2,6 +2,7 @@
 using PSoft.Libraryd.Domain.Queries;
 using SqlKata.Compilers;
 using SqlKata.Execution;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -21,6 +22,9 @@ namespace PSoft.Libraryd.AcessData.Queries
         public List<ResponseAlquilerDTO> GetAlquileres(int estado)
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
+            var estadoquery = db.Query("EstadoDeAlquileres").Where("EstadoId", "=", estado).FirstOrDefault();
+            if (estadoquery == null)
+                throw new Exception("Estado no existe.");
             var query = db.Query("Alquileres")
                 .Select("Alquileres.Id AS Id",
                     "Alquileres.Estado AS Estado",
@@ -43,12 +47,17 @@ namespace PSoft.Libraryd.AcessData.Queries
                 .Join("Libros", "Alquileres.ISBN", "Libros.ISBN");
 
             var result = query.Get<ResponseAlquilerDTO>();
+            if (!result.Any())
+                throw new Exception("No se encontraron resultados.");
             return result.ToList();
         }
 
         public ResponseGetAlquileresByCliente GetByCliente(int cliente)
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
+            var clientequery = db.Query("Clientes").Where("ClienteId", "=", cliente).FirstOrDefault();
+            if (clientequery == null)
+                throw new Exception("Cliente no existe");
             var alquileresResult = db.Query("Alquileres")
                 .Select("Alquileres.Id AS Id",
                     "Alquileres.Estado AS Estado",
@@ -69,7 +78,7 @@ namespace PSoft.Libraryd.AcessData.Queries
 
             return new ResponseGetAlquileresByCliente
             {
-                ClienteId = cliente,
+                ClienteId = clientequery.ClienteId,
                 alquileres = alquileresResult
             };
         }

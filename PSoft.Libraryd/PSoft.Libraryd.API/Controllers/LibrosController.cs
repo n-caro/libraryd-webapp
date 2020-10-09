@@ -2,8 +2,6 @@
 using PSoft.Libraryd.Application.Services;
 using System;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace PSoft.Libraryd.API.Controllers
 {
     [Route("api/[controller]")]
@@ -16,9 +14,15 @@ namespace PSoft.Libraryd.API.Controllers
         {
             _service = service;
         }
-
+        /// <summary>
+        /// Get List of Libros, optional filter by stock, author (autor) and title (titulo)
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <param name="autor"></param>
+        /// <param name="titulo"></param>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult GetLibrosClientes([FromQuery] bool? stock, [FromQuery] string autor, [FromQuery] string titulo)
+        public IActionResult GetLibros([FromQuery] bool? stock, [FromQuery] string autor, [FromQuery] string titulo)
         {
             try
             {
