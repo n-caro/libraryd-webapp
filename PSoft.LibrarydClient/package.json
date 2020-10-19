@@ -1,0 +1,23 @@
+{
+  "name": "libraryd-client",
+  "version": "1.0.0",
+  "description": "A small web application project for booking and renting books from a Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n-caro/libraryd-webapp.git"
+  },
+  "author": "Nicolas Caro (n-caro)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n-caro/libraryd-webapp/issues"
+  },
+  "homepage": "https://github.com/n-caro/libraryd-webapp#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.1.1"
+  }
+}
