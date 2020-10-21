@@ -1,0 +1,7 @@
+div#app{
+    padding-top: 65px;
+}
+
+small, .small {
+    font-size: 60%;
+}
