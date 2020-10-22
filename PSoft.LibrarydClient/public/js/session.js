@@ -1,8 +1,8 @@
 import { clienteDropdown as menuCliente } from "./components/clienteDropdown.js";
-import { alertBoostrap } from "./components/alertBoostrap.js";
-import { APIBASEURL } from "./config/constants.js";
+import { getClienteByDNI } from "./services/clienteService.js";
+import { showAlert } from "./utilsDOM/showAlert.js";
 
-const clienteSesion = JSON.parse(localStorage.getItem("cliente"));
+const clienteSesion = localStorage.getItem("cliente") ? JSON.parse(localStorage.getItem("cliente")) : null;
 
 const setNavbar = () => {
   let userNavbar = document.getElementById("userNavbar");
@@ -25,34 +25,27 @@ if (logInForm) {
     e.preventDefault();
     let dniValue = logInForm.elements.dni.value;
     dniValue
-      ? logIn(dniValue)
+      ? logInCliente(dniValue)
       : showLoginError("El campo DNI se encuentra vacío.");
   };
 }
 
-const showLoginError = (message) => {
-  let showAlertDIV = document.getElementById("showAlert");
-  showAlertDIV
-    ? (showAlertDIV.innerHTML = alertBoostrap(message, "danger"))
-    : console.warn("No existe #showAlertDIV");
+const logInCliente = async (dni) => {
+  const response = await getClienteByDNI(dni);
+  response
+    ? manageResponseCliente(response)
+    : showAlert("Inicio de sesión no disponible.", "warning");
 };
 
-const logIn = (dni) => {
-  fetch(`${APIBASEURL}/Clientes?dni=${dni}`)
-    .then((res) => res.json())
-    .catch((error) => {
-      showLoginError("El inicio de sesión no esta disponible.");
-      console.warn(error);
-    })
-    .then((response) => {
-      if (response.error) showLoginError("Cliente inexistente.");
-      else {
-        let cliente = response[0];
-        console.log(cliente);
-        localStorage.setItem("cliente", JSON.stringify(cliente));
-        window.location.assign("/cliente");
-      }
-    });
+const manageResponseCliente = (responseCliente) => {
+  responseCliente.error
+    ? showAlert("DNI inválido.", "danger")
+    : saveSessionRedirect(responseCliente[0]);
+};
+
+const saveSessionRedirect = (cliente) => {
+  localStorage.setItem("cliente", JSON.stringify(cliente));
+  window.location.assign("/cliente");
 };
 
 // logOut

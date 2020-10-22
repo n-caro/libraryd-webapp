@@ -1,4 +1,4 @@
-export const APIBASEURL = 'https://localhost:5001/api';
-
-
-export const API_URL_LIBROSTOCK = APIBASEURL + "/Libros"
+// API CONSTANTS
+export const API_BASEURL = "https://localhost:5001/api";
+export const API_URL_LIBROSTOCK = API_BASEURL + "/Libros?stock=true";
+export const API_URL_CLIENTE = API_BASEURL + "/Clientes";

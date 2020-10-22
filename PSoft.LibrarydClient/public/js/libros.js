@@ -1,6 +1,6 @@
 import { cardLibro } from "./components/cardLibro.js";
 import { getStock } from "./services/libroService.js";
-import { alertBoostrap } from "./components/alertBoostrap.js";
+import { showAlert } from "./utilsDOM/showAlert.js";
 
 const rowLibros = document.getElementById("rowLibros");
 window.addEventListener(
@@ -25,17 +25,10 @@ const loadLibrosStock = async () => {
 
 const showLibros = (libros) => {
   libros.error
-    ? showAlert(
-      libros.message,
-      "warning"
-    )
+    ? showAlert(libros.message, "warning")
     : libros.map((l) => insertLibroDOM(l));
 };
 
 const insertLibroDOM = (libro) => {
   rowLibros.innerHTML += cardLibro(libro);
-};
-
-const showAlert = (message, type) => {
-  document.getElementById("showAlert").innerHTML = alertBoostrap(message, type);
 };
