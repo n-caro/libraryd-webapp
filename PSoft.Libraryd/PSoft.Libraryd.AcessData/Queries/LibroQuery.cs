@@ -64,8 +64,8 @@ namespace PSoft.Libraryd.AcessData.Queries
             var query = db.Query("Libros")
                 .When(stock.HasValue && stock.Value, q => q.Where("Stock", ">", 0))
                 .When(stock.HasValue && stock.Value == false, q => q.Where("Stock", "=", 0))
-                .When(!string.IsNullOrEmpty(autor), q => q.Where("Autor", "=", autor))
-                .When(!string.IsNullOrEmpty(titulo), q => q.Where("Titulo", "=", titulo));
+                .When(!string.IsNullOrEmpty(autor), q => q.WhereLike("Autor", "%"+ autor + "%"))
+                .When(!string.IsNullOrEmpty(titulo), q => q.WhereLike("Titulo", "%" + titulo + "%"));
             var result = query.Get<ResponseLibroDTO>();
             if (!result.Any())
                 throw new Exception("No se encontraron resultados.");
