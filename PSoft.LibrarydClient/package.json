@@ -4,7 +4,7 @@
   "description": "A small web application project for booking and renting books from a Library",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon app"
+    "start": "nodemon -e * app.js"
   },
   "repository": {
     "type": "git",

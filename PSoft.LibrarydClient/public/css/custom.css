@@ -5,3 +5,9 @@ div#app{
 small, .small {
     font-size: 60%;
 }
+
+
+.coverlibro {
+    height: 300px;
+    width: auto;
+}

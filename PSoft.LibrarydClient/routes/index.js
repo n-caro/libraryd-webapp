@@ -1,6 +1,7 @@
 const routes = require("express").Router();
 const cliente = require("./cliente");
 const session = require("./session");
+const libros = require("./libros");
 
 //index
 routes.get("/", (req, res) => {
@@ -10,6 +11,7 @@ routes.get("/", (req, res) => {
 // import routes
 routes.use("/cliente", cliente);
 routes.use("/", session);
+routes.use("/libros", libros);
 
 //404
 routes.use(function (req, res, next) {
