@@ -12,5 +12,11 @@ const searchByTitulo = (q) => {
     .catch((err) => console.log("ERROR: " + err));
 }
 
+const searchByAutor = (q) => {
+  return fetch(APIURL_LIBROSTOCK + "&autor=" + q)
+    .then((response) => response.json())
+    .catch((err) => console.log("ERROR: " + err));
+}
 
-export { getLibrosWithStock, searchByTitulo };
+
+export { getLibrosWithStock, searchByTitulo, searchByAutor };
