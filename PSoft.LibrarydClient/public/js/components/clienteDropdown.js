@@ -6,9 +6,9 @@ export const clienteDropdown = (nombre) => (`
         </svg> 
         <span class="align-middle">${nombre}</span>
       </button>
-      <div class="dropdown-menu dropdown-menu-right">
-        <h6 class="dropdown-header">Dropdown header</h6>
-        <a class="dropdown-item" href="#">Action</a>
+      <div class="dropdown-menu dropdown-menu-lg-right">
+        <h6 class="dropdown-header">Opciones de usuario</h6>
+        <a class="dropdown-item" href="/cliente/dashboard">Dashboard</a>
         <a class="dropdown-item text-danger" href="/logout">Cerrar sesion</a>
       </div>
     </div>`);
