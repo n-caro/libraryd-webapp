@@ -1,9 +1,16 @@
-import { API_URL_LIBROSTOCK } from "../config/constants.js";
+import { APIURL_LIBROSTOCK, APIURL_LIBROS } from "../config/constants.js";
 
-const getStock = () => {
-  return fetch(API_URL_LIBROSTOCK)
+const getLibrosWithStock = () => {
+  return fetch(APIURL_LIBROSTOCK)
     .then((response) => response.json())
     .catch((err) => console.log("ERROR: " + err));
 };
 
-export { getStock };
+const searchByTitulo = (q) => {
+  return fetch(APIURL_LIBROSTOCK + "&titulo=" + q)
+    .then((response) => response.json())
+    .catch((err) => console.log("ERROR: " + err));
+}
+
+
+export { getLibrosWithStock, searchByTitulo };

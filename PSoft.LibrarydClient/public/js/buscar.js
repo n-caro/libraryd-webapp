@@ -1,20 +1,25 @@
 import { cardLibro } from "./components/cardLibro.js";
-import { getLibrosWithStock } from "./services/libroService.js";
+import { searchByTitulo } from "./services/libroService.js";
 import { showAlert } from "./utilsDOM/showAlert.js";
 
-const rowLibros = document.getElementById("rowLibros");
-window.addEventListener(
-  "load",
-  () => {
-    if (rowLibros) {
-      loadLibrosStock();
-    }
-  },
-  false
-);
 
-const loadLibrosStock = async () => {
-  const libros = await getLibrosWithStock();
+const rowLibros = document.getElementById("rowLibros");
+
+const searchFormDOM = document.getElementById("search-form");
+if (searchFormDOM) {
+  searchFormDOM.onsubmit = function (e) {
+    e.preventDefault();
+    console.log("manipulando searchForm")
+    let q = searchFormDOM.elements.q.value
+    let searchBy = searchFormDOM.elements.searchBy.value
+    console.log("Buscando " + q + " de tipo " + searchBy)
+    searchLibros(q)
+  };
+}
+
+
+const searchLibros = async (q) => {
+  const libros = await searchByTitulo(q);
   libros
     ? showLibros(libros)
     : showAlert(
@@ -22,6 +27,7 @@ const loadLibrosStock = async () => {
         "warning"
       );
 };
+
 
 const showLibros = (libros) => {
   libros.error

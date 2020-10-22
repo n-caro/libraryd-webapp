@@ -2,6 +2,7 @@ const routes = require("express").Router();
 const cliente = require("./cliente");
 const session = require("./session");
 const libros = require("./libros");
+const buscar = require("./buscar");
 
 //index
 routes.get("/", (req, res) => {
@@ -12,6 +13,7 @@ routes.get("/", (req, res) => {
 routes.use("/cliente", cliente);
 routes.use("/", session);
 routes.use("/libros", libros);
+routes.use("/buscar", buscar);
 
 //404
 routes.use(function (req, res, next) {

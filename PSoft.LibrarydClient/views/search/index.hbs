@@ -1,0 +1,39 @@
+{{> head}}
+{{! --------------- }}
+<div class="container mt-5">
+    <div class="searchcontainer">
+        <form id="search-form">
+        <div class="input-group input-group-lg mb-3 border">
+        <div class="input-group-prepend">
+        <button class="btn btn-outline-secondary border-0 rounded-0" type="button" type="submit">
+            <svg class="bi bi d-block m-auto" width="0.8em" height="0.8em" fill="currentColor">
+            <use xlink:href="/img/icons/bootstrap-icons.svg#search"/>
+            </svg> 
+        </button>
+        </div>
+        <input name="q" type="text" class="form-control border-top-0 border-bottom-0" placeholder="Buscar en Libraryd...">
+        <div class="input-group-append input-group-lg">
+        <select id="searchBy" class="custom-select border-0" id="inputGroupSelect01">
+        <option value="1" selected>Titulo</option>
+        <option value="2">Autor</option>
+        </select>
+        </div>
+        </div>
+        </form>
+    </div>
+
+
+
+
+
+    <h1 class="display-4">
+    
+    </h1>
+    <hr class="my-4">
+    <div id="showAlert"></div>
+    <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3" id="rowLibros">
+
+    </div>
+</div>
+{{! --------------- }}
+{{> footer}}
