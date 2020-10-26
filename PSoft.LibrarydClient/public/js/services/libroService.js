@@ -7,13 +7,13 @@ const getLibrosWithStock = () => {
 };
 
 const searchByTitulo = (q) => {
-  return fetch(APIURL_LIBROSTOCK + "&titulo=" + q)
+  return fetch(APIURL_LIBROS + "?titulo=" + q)
     .then((response) => response.json())
     .catch((err) => console.log("ERROR: " + err));
 }
 
 const searchByAutor = (q) => {
-  return fetch(APIURL_LIBROSTOCK + "&autor=" + q)
+  return fetch(APIURL_LIBROS + "?autor=" + q)
     .then((response) => response.json())
     .catch((err) => console.log("ERROR: " + err));
 }

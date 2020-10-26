@@ -10,10 +10,11 @@ export const cardLibro = (libro) => `
       <span class="card-subtitle mb-2 text-muted font-weight-light">${libro.autor}</span>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">
+      <li class="list-group-item text-center">
+      ${libro.stock ? '<span class="badge badge-success mb-2">disponible</span>' : '<span class="badge badge-warning mb-2">sin stock</span>'}
       <div class="btn-group btn-group-sm d-flex" role="group">
-        <a href="/alquilar?isbn=${libro.isbn}" class="btn btn-outline-secondary">Alquilar</a>
-        <a href="/reservar?isbn=${libro.isbn}" class="btn btn-outline-secondary">Reservar</a>
+        <a href="/alquilar?isbn=${libro.isbn}" class="btn btn-outline-secondary ${libro.stock ? '': 'disabled'}">Alquilar</a>
+        <a href="/reservar?isbn=${libro.isbn}" class="btn btn-outline-secondary ${libro.stock ? '': 'disabled'}">Reservar</a>
       </div>
       </li>
       <li class="list-group-item">
