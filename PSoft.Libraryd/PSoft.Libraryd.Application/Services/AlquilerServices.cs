@@ -27,7 +27,7 @@ namespace PSoft.Libraryd.Application.Services
         public ResponseAlquiler CreateAlquiler(AlquilerDTO alquiler)
         {
             ValidateAlquilerDTO(alquiler);
-            if (alquiler.FechaAlquiler.HasValue && alquiler.FechaAlquiler.Value < DateTime.Now) throw new ArgumentException("Fecha de Alquiler no valida");
+            if (alquiler.FechaAlquiler.HasValue && alquiler.FechaAlquiler.Value < DateTime.Today) throw new ArgumentException("Fecha de Alquiler no valida");
             if (!alquiler.FechaAlquiler.HasValue)
                 alquiler.FechaAlquiler = DateTime.Now;
             var entity = new Alquiler
