@@ -35,7 +35,7 @@ namespace PSoft.Libraryd.Application.Services
                 FechaAlquiler = alquiler.FechaAlquiler,
                 ClienteId = alquiler.Cliente,
                 EstadoId = 2,
-                FechaDevolucion = DateTime.Now.AddDays(7),
+                FechaDevolucion = alquiler.FechaAlquiler.Value.AddDays(7),
                 ISBN = alquiler.ISBN
             };
             _repository.Add<Alquiler>(entity);
