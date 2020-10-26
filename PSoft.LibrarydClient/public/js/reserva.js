@@ -2,8 +2,8 @@ import { getParamURL } from "./utilsDOM/getParamUrl.js";
 import { clienteSesion } from "./session.js";
 import { showAlert, showAlertRemove } from "./utilsDOM/showAlert.js";
 import { postAlquiler } from "./services/alquilerService.js";
-import {ReservaDTO} from './DTOs/AlquilerDTO.js'
-import {cardAlquiler} from './components/cardAlquiler.js'
+import { ReservaDTO } from "./DTOs/AlquilerDTO.js";
+import { cardAlquiler } from "./components/cardAlquiler.js";
 
 const reservaForm = document.getElementById("reservaForm");
 
@@ -15,12 +15,11 @@ $("#datepicker").datepicker({
   language: "es",
 });
 
-
 // alquilar
 if (reservaForm) {
   clienteSesion
-  ? (reservaForm.elements.clienteid.value = clienteSesion.clienteId)
-  : showAlert("Debes iniciar sesion para realizar una reserva", "danger");
+    ? (reservaForm.elements.clienteid.value = clienteSesion.clienteId)
+    : showAlert("Debes iniciar sesion para realizar una reserva", "danger");
   reservaForm.onsubmit = function (e) {
     e.preventDefault();
     showAlertRemove();
@@ -59,7 +58,6 @@ const manageAlquilerResults = (alquiler) => {
     showAlert(alquiler.message, "danger");
   }
 };
-
 
 // validator
 const validateAlquilerFields = (clienteid, isbn, fecha) => {

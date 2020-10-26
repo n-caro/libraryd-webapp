@@ -1,21 +1,21 @@
-@import 'bootstrap-datepicker3.min.css';  
+@import "bootstrap-datepicker3.min.css";
 
-div#app{
-    padding-top: 65px;
+div#app {
+  padding-top: 65px;
 }
 
 .small {
-    font-size: 60%;
+  font-size: 60%;
 }
 .small-75 {
-    font-size: 75%;
+  font-size: 75%;
 }
 
 .coverlibro {
-    height: 300px;
-    width: auto;
+  height: 300px;
+  width: auto;
 }
 .alquiler-libro-img {
-    height: 180px;
-    width: auto;
+  height: 180px;
+  width: auto;
 }
