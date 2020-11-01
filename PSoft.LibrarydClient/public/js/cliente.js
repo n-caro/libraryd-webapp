@@ -30,7 +30,7 @@ const loadAlquileres = async (id) => {
 
 const manageResponseAlquileres = (alquileresr) => {
   if(alquileresr.clienteId){
-    alquileresr.alquileres
+    alquileresr.alquileres.length > 0
     ? alquileresr.alquileres.forEach(a => {
       switch(a.estado){
         case ESTADO_RESERVA:
