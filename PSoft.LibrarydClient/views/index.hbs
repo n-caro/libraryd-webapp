@@ -1,7 +1,44 @@
 {{> head}}
 {{! --------------- }}
-<div class="container">
-    Libros disponibles
+<div class="container p-2">
+  <div class="row my-4">
+    <div class="col-12 col-lg-6 order-lg-2 d-flex">
+      <img class="img-fluid p-5"src="/img/illustrations/undraw_book_lover.svg"  alt="libraryd inicio">
+    </div>
+    <div class="col-12 col-lg-6 d-flex">
+      <div class="jumbotron bg-transparent">
+        <h1 class="display-4 text-center text-md-left">Bienvenido a Libraryd.</h1>
+        <h3 class="font-weight-light text-center text-md-left text-muted">Biblioteca Municipal de Carmen de Areco</h3>
+        <hr class="my-3">
+        <p class="lead">
+          <b class="text-primary">Libraryd</b>
+          es el sistema digital para la biblioteca Municipal de Carmen de Areco, como cliente podrás gestionar alquileres y reservas de nuestros libros de manera online.
+        </p>
+        <section id="home-buttons" class="row">
+          <div class="col">
+            <a class="btn btn-outline-success btn-lg mx-2 btn-block" href="/registro" role="button">Crear cuenta</a>
+          </div>
+          <div class="col">
+            <a class="btn btn-outline-primary btn-lg mx-2 btn-block" href="/login" role="button">Iniciar sesión</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <section class="row" id="features-home">
+    <div class="col-12 col-md-4 text-center text-md-left">
+      <i class="fas fa-search text-primary featureicon"></i>
+      <p class="lead text-muted"><b>Busca</b> entre todos nuestros libros por título o autor.</p>
+    </div>
+    <div class="col-12 col-md-4 text-center text-md-left">
+      <i class="fas fa-book-reader text-primary featureicon"></i>
+      <p class="lead text-muted"><b>Alquila o reserva</b> nuestros libros disponibles.</p>
+    </div>
+    <div class="col-12 col-md-4 text-center text-md-left">
+      <i class="far fa-calendar-alt text-primary featureicon"></i>
+      <p class="lead text-muted"><b>Gestiona</b> y obtén información sobre los alquileres y reservas que has realizado.</p>
+    </div>
+  </section>
 </div>
 {{! --------------- }}
 {{> footer}}

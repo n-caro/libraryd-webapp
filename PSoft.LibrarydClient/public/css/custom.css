@@ -19,3 +19,11 @@ div#app {
   height: 180px;
   width: auto;
 }
+
+/*   HOME    */
+#features-home {
+  padding: 1em;
+}
+#features-home .featureicon{
+  font-size: 2em;
+}
