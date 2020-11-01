@@ -1,14 +1,10 @@
 const routes = require("express").Router();
 // dashboard: /cliente/
 routes.get("/", (req, res) => {
-  res.render("index", { title: "Dashboard | Libraryd" });
-});
-// cliente/reservas
-routes.get("/reservas", (req, res) => {
-  res.render("index", { title: "Reservas | Libraryd" });
+  res.render("cliente/dashboard", { title: "Dashboard | Libraryd" });
 });
 // cliente/alquileres
-routes.get("/reservas", (req, res) => {
-  res.render("index", { title: "Alquileres | Libraryd" });
+routes.get("/historial", (req, res) => {
+  res.render("cliente/alquileres", { title: "Alquileres | Libraryd", scripts: ["cliente.js"] });
 });
 module.exports = routes;

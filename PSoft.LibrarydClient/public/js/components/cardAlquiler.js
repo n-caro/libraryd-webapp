@@ -1,48 +1,27 @@
 import { cardBodyLibro } from './cardBodyLibro.js'
 export const cardAlquiler = (alquiler) => {
-  let { id, cliente, estadoId, libro, fechaAlquiler, fechaReserva, fechaDevolucion } = alquiler;
-  let fecha = '-', estadoString = '-';
-  switch(estadoId){
-    case 1:
-      estadoString = 'Reserva'
-      fecha = `${new Date(fechaReserva).toLocaleDateString()}`;
-      break;
-    case 2:
-      estadoString = 'Alquiler'
-      fecha = new Date(fechaAlquiler).toLocaleDateString();
-      break;
-  }
+  let { id, libro, fechaAlquiler, fechaDevolucion } = alquiler;
   return `
-  <div class="card">
+  <div class="card my-4">
   <div class="card-header d-flex">
     <span  class="align-middle">
       Orden #<b>${id}</b>
-      <span class="badge badge-secondary">${estadoString}</span>
+      <span class="badge badge-secondary">Alquiler</span>
     </span>
-      <span class="d-block ml-auto">
-        <svg class="align-middle" class="bi" width="1em" height="1em" fill="currentColor">
-          <use xlink:href="/img/icons/bootstrap-icons.svg#file-person"/>
-          </svg>
-        <span class="align-middle">DNI: ${cliente.dni}</span>
-      </span>
+      
     </div>
     <div class="card-body pt-0 pb-2">
-    <ul class="list-group list-group-horizontal border-0">
+    <ul class="list-group list-group-horizontal border-0 align-middle">
       <li class="list-group-item flex-fill border-0">
-      <span class="small text-muted d-block">${estadoString}</span>
-      <svg class="align-middle" class="bi" width="1em" height="1em" fill="currentColor">
-      <use xlink:href="/img/icons/bootstrap-icons.svg#calendar"/>
-      </svg>
-      <span class="align-middle">${fecha}</span>
+      <span class="small text-muted d-block">Fecha Alquiler</span>
+      <i class="far fa-calendar"></i>
+      <span class="align-middle">${new Date(fechaAlquiler).toLocaleDateString()}</span>
     </li>
-    ${estadoId == 2
-      ? `<li class="list-group-item flex-fill border-0">
-          <span class="small text-muted d-block">Devolución</span>
-          <svg class="align-middle" class="bi" width="1em" height="1em" fill="currentColor">
-          <use xlink:href="/img/icons/bootstrap-icons.svg#calendar-week"/>
-          </svg> <span class="align-middle">${new Date(fechaDevolucion).toLocaleDateString()}</span>
-        </li>`
-      : ''}
+    <li class="list-group-item flex-fill border-0 align-middle">
+          <span class="small text-muted d-block">Fecha Devolución</span>
+          <i class="far fa-calendar-alt"></i>
+          <span>${new Date(fechaDevolucion).toLocaleDateString()}</span>
+    </li>
   </ul>
     ${cardBodyLibro(libro)}
     </div>

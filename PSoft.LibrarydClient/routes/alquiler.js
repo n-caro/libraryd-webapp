@@ -8,9 +8,9 @@ routes.get("/alquilar", (req, res) => {
 });
 
 routes.get("/reservar", (req, res) => {
-  res.render("alquiler/reserva", {
+  res.render("alquiler/reservar", {
     title: "Reservar libro | Libraryd",
-    scripts: ["bootstrap-datepicker.min.js", "locale/bootstrap-datepicker.es.min.js", "reserva.js"],
+    scripts: ["bootstrap-datepicker.min.js", "locale/bootstrap-datepicker.es.min.js", "reservar.js"],
   });
 });
 

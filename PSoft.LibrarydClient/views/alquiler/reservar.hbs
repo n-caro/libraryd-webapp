@@ -2,26 +2,25 @@
 {{! --------------- }}
 <div class="container mt-5 p-5">
   <h1 class="display-4">Reservar libro</h1>
-  <div class="">
+  <hr class="my-4">
+  <div id="showAlert"></div>
     <form id="reservaForm">
-      <div id="showAlert"></div>
       <div class="form-group">
-        <label for="clienteid">ID de cliente:</label>
+        <label for="clienteid"><i class="fas fa-user text-muted"></i> ID de cliente:</label>
         <input name="clienteid" id="clienteid" class="form-control form-control-lg " type="text" placeholder="ID de cliente" disabled>
       </div>
       <div class="form-group">
-        <label for="isbn">ISBN de libro</label>
+        <label for="isbn"><i class="fas fa-barcode text-muted"></i> ISBN de libro</label>
         <input name="isbn" id="isbn" class="form-control form-control-lg " type="text" placeholder="Codigo ISBN de libro">
         <span class="small-75 text-muted">*Nota: Puedes utilizar el <a href="/buscar">buscador</a> para cargar el ISBN de un libro automáticamente.</span>
       </div>
-      <label>Fecha de reserva:</label>
+      <label><i class="fas fa-calendar text-muted"></i> Fecha de reserva:</label>
       <div class="input-group">
       <input name="fechareserva" type="text" class="form-control form-control-lg" id="datepicker" placeholder="AAAA-MM-DD">
       </div>
 
-      <button name="alquilarbtn" type="submit" class="btn btn-success btn-block btn-lg mt-4">Reservar</button>
+      <button id="btnsubmit" name="alquilarbtn" type="submit" class="btn btn-success btn-block btn-lg mt-4">Reservar</button>
     </form>
-  </div>
 </div>
 {{! --------------- }}
 {{> footer}}
