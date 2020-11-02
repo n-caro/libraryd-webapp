@@ -6,4 +6,16 @@ const getClienteByDNI = (dni) => {
     .catch((err) => console.log("ERROR: " + err));
 };
 
-export { getClienteByDNI };
+const postCliente = (cliente) => {
+  return fetch(API_URL_CLIENTE, {
+    method: 'POST',
+    body: JSON.stringify(cliente), // data can be `string` or {object}!
+    headers:{
+      'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => response.json())
+    .catch((err) => console.log("ERROR: " + err));
+}
+
+export { getClienteByDNI, postCliente };

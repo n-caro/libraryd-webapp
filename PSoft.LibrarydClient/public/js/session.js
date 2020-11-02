@@ -13,7 +13,10 @@ const setNavbar = () => {
 
 const menuInvitado = () => {
   return `
-    <a href="/login" class="btn btn-outline-primary">
+    <a href="/registro" class="btn btn-outline-secondary btn-sm">
+        Registrarse
+    </a>
+    <a href="/login" class="btn btn-outline-primary btn-sm">
         Iniciar sesion
     </a>
     `;

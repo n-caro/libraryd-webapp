@@ -7,4 +7,12 @@ routes.get("/", (req, res) => {
 routes.get("/historial", (req, res) => {
   res.render("cliente/alquileres", { title: "Alquileres | Libraryd", scripts: ["cliente.js"] });
 });
+//
+routes.get("/registro", (req, res) => {
+  res.render("cliente/registro", {
+    title: "Registrarse | Libraryd",
+    scripts: ["registrar.js"],
+  });
+});
+
 module.exports = routes;

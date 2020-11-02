@@ -24,6 +24,14 @@ div#app {
 #features-home {
   padding: 1em;
 }
-#features-home .featureicon{
+#features-home .featureicon {
+  font-size: 2em;
+}
+
+/*  CARDS */
+#cardSuccess .icon {
+  font-size: 5em;
+}
+#cardSuccess .title {
   font-size: 2em;
 }
