@@ -1,4 +1,4 @@
-const libroImageDefault = 'https://placekitten.com/300/500';
+const libroImageDefault = '/img/libros/libro-no-cover.jpg';
 export const cardLibro = (libro) => `
 <div class="col p-4">
   <div class="card border-0 shadow-sm">
