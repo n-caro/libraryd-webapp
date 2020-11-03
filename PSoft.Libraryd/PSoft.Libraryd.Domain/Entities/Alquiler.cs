@@ -12,7 +12,7 @@ namespace PSoft.Libraryd.Domain.Entities
         public DateTime? FechaAlquiler { get; set; }
         public DateTime? FechaReserva { get; set; }
         public DateTime? FechaDevolucion { get; set; }
-        [ForeignKey("Estado")]
+        [ForeignKey("EstadoId")]
         public EstadoDeAlquiler EstadoDeAlquiler { get; set; }
         [ForeignKey("ClienteId")]
         public Cliente Cliente { get; set; }

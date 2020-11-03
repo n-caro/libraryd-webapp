@@ -10,8 +10,8 @@ using PSoft.Libraryd.AcessData;
 namespace PSoft.Libraryd.AcessData.Migrations
 {
     [DbContext(typeof(LibrarydDbContext))]
-    [Migration("20201009004313_libraryd-db-v2")]
-    partial class libraryddbv2
+    [Migration("20201103180959_libraryd-db-v3")]
+    partial class libraryddbv3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,10 +30,6 @@ namespace PSoft.Libraryd.AcessData.Migrations
 
                     b.Property<int>("ClienteId")
                         .HasColumnName("Cliente")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Estado")
-                        .HasColumnName("Estado1")
                         .HasColumnType("int");
 
                     b.Property<int>("EstadoId")
@@ -58,7 +54,7 @@ namespace PSoft.Libraryd.AcessData.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.HasIndex("Estado");
+                    b.HasIndex("EstadoId");
 
                     b.HasIndex("ISBN");
 
@@ -179,49 +175,9 @@ namespace PSoft.Libraryd.AcessData.Migrations
                             Autor = "Ian Gorton",
                             Edicion = "Second Edition",
                             Editorial = "Springer",
-                            Imagen = "",
+                            Imagen = "https://i.imgur.com/wVXlZzF.jpg",
                             Stock = 5,
                             Titulo = "Essential Software Architecture"
-                        },
-                        new
-                        {
-                            ISBN = "9780136073734",
-                            Autor = "William Stallings",
-                            Edicion = "Septima Edicion",
-                            Editorial = "Pearsons",
-                            Imagen = "",
-                            Stock = 8,
-                            Titulo = "Organización y Arquitectura de Computadores"
-                        },
-                        new
-                        {
-                            ISBN = "9780764508141",
-                            Autor = "Davis, Stephen R",
-                            Edicion = "2001",
-                            Editorial = "Hungry Minds Inc",
-                            Imagen = "",
-                            Stock = 2,
-                            Titulo = "C# for Dummies"
-                        },
-                        new
-                        {
-                            ISBN = "9789875809659",
-                            Autor = "Dross Rotzank",
-                            Edicion = "2019",
-                            Editorial = "BOOKET",
-                            Imagen = "",
-                            Stock = 1,
-                            Titulo = "Luna de Pluton"
-                        },
-                        new
-                        {
-                            ISBN = "9788497598637",
-                            Autor = "Eduard Estivill",
-                            Edicion = "2003",
-                            Editorial = "DEBOLSILLO",
-                            Imagen = "",
-                            Stock = 15,
-                            Titulo = "NECESITO DORMIR!"
                         },
                         new
                         {
@@ -229,9 +185,99 @@ namespace PSoft.Libraryd.AcessData.Migrations
                             Autor = "Ian Sommerville",
                             Edicion = "Novena Edicion",
                             Editorial = "Addison-Wesley",
-                            Imagen = "",
-                            Stock = 3,
+                            Imagen = "https://i.imgur.com/XwTsnyv.jpg",
+                            Stock = 4,
                             Titulo = "Ingenieria de Software"
+                        },
+                        new
+                        {
+                            ISBN = "9780136073734",
+                            Autor = "William Stallings",
+                            Edicion = "Septima Edicion",
+                            Editorial = "Pearsons",
+                            Imagen = "https://i.imgur.com/eFiruFW.jpg",
+                            Stock = 8,
+                            Titulo = "Organización y Arquitectura de Computadores"
+                        },
+                        new
+                        {
+                            ISBN = "9788497644907",
+                            Autor = "Homero",
+                            Edicion = "2005",
+                            Editorial = "Edimat Libros",
+                            Imagen = "https://i.imgur.com/PsK9lpi.jpg",
+                            Stock = 10,
+                            Titulo = "La iliada"
+                        },
+                        new
+                        {
+                            ISBN = "9780132350884",
+                            Autor = "Robert C. Martin",
+                            Edicion = "1 ed.",
+                            Editorial = "Prentice Hall",
+                            Imagen = "https://i.imgur.com/XyEK93p.jpg",
+                            Stock = 1,
+                            Titulo = "Clean Code"
+                        },
+                        new
+                        {
+                            ISBN = "9788445000663",
+                            Autor = "J. R. R. Tolkien",
+                            Edicion = "1",
+                            Editorial = "Booket",
+                            Imagen = "https://i.imgur.com/FMxBdpD.jpg",
+                            Stock = 0,
+                            Titulo = "El Señor de los Anillos I"
+                        },
+                        new
+                        {
+                            ISBN = "9786070712739",
+                            Autor = "J. R. R. Tolkien",
+                            Edicion = "2012",
+                            Editorial = "Booket",
+                            Imagen = "https://i.imgur.com/0813LgS.jpg",
+                            Stock = 2,
+                            Titulo = "El Señor de los Anillos II"
+                        },
+                        new
+                        {
+                            ISBN = "9786070712746",
+                            Autor = "J. R. R. Tolkien",
+                            Edicion = "Reprint edición",
+                            Editorial = "Planeta",
+                            Imagen = "https://i.imgur.com/Bxs4Ia5.jpg",
+                            Stock = 3,
+                            Titulo = "El Señor de los Anillos III"
+                        },
+                        new
+                        {
+                            ISBN = "9788497598637",
+                            Autor = "Eduard Estivill",
+                            Edicion = "2003",
+                            Editorial = "DEBOLSILLO",
+                            Imagen = "https://i.imgur.com/7EWiKz2.jpg",
+                            Stock = 15,
+                            Titulo = "NECESITO DORMIR!"
+                        },
+                        new
+                        {
+                            ISBN = "9780525566267",
+                            Autor = "Stephen King",
+                            Edicion = "Edición Media tie-in",
+                            Editorial = "Vintage Espanol",
+                            Imagen = "https://i.imgur.com/Sq51uG6.jpg",
+                            Stock = 6,
+                            Titulo = "It (Eso)"
+                        },
+                        new
+                        {
+                            ISBN = "9780764508141",
+                            Autor = "Davis, Stephen R",
+                            Edicion = "2001",
+                            Editorial = "Hungry Minds Inc",
+                            Imagen = "https://i.imgur.com/6BKObap.jpg",
+                            Stock = 2,
+                            Titulo = "C# for Dummies"
                         });
                 });
 
@@ -245,7 +291,9 @@ namespace PSoft.Libraryd.AcessData.Migrations
 
                     b.HasOne("PSoft.Libraryd.Domain.Entities.EstadoDeAlquiler", "EstadoDeAlquiler")
                         .WithMany()
-                        .HasForeignKey("Estado");
+                        .HasForeignKey("EstadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PSoft.Libraryd.Domain.Entities.Libro", "Libro")
                         .WithMany()
