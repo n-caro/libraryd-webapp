@@ -23,7 +23,7 @@ const loginRequired = () => {
 const menuInvitado = () => {
   return `
     <a href="/login" class="btn btn-outline-primary">
-        Iniciar sesion
+      <i class="fas fa-sign-in-alt"></i> Ingresar
     </a>
     `;
 };
