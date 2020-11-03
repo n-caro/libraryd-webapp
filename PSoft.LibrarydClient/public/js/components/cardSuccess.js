@@ -1,6 +1,6 @@
 export const cardSuccess = (title, message, extraHTMLbody = '') => {
   return `
-  <div class="card text-center p-5 align-content-center" id="cardSuccess">
+  <div class="card text-center py-3 align-content-center" id="cardSuccess">
       <i class="fas fa-check-circle icon text-success"></i>
       <div class="card-body">
         <h6 class="title font-weight-normal">${title}</h6>

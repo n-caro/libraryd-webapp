@@ -1,21 +1,20 @@
 {{> head}}
-{{! --------------- }}
 <div class="container">
-  <div class="row my-5 pt-5 mx-auto">
-    <div class="col-sm my-auto">
-      <img class="img-fluid p-5" src="/img/illustrations/undraw_Login_re_4vu2.svg" alt="login" title="login">
+  <div class="row px-5">
+    <div class="col-12 col-lg-6 d-flex">
+      <img class="img-fluid" src="/img/illustrations/undraw_Login_re.svg" alt="login" title="login">
     </div>
-    <div class="col col-sm my-auto">
-        <h1 class="display-4">Iniciar sesion</h1>
-        <p class="lead">Si ya eres miembro de Libraryd, accede completando los datos.</p>
-        {{! form.start }}
-        <form id="login-form">
+    <div class="col-12 col-lg-6 text-left">
+      <h1 class="display-4">Iniciar sesion</h1>
+      <p class="lead">Si ya eres miembro de Libraryd, accede completando los datos. ¿No tienes cuenta? <a href="/registro">registrate ahora.</a></p>
+      {{! form.start }}
+      <form id="login-form">
           <div id="showAlert"></div>
           <label><i class="far fa-id-card text-muted"></i> DNI:</label>
           <input name="dni" id="dni" class="form-control form-control-lg " type="text" placeholder="DNI de la cuenta">
           <button type="submit" class="btn btn-primary btn-block btn-lg mt-4">Iniciar sesión</button>
-        </form>
-        {{! form.end }}
+      </form>
+      {{! form.end }}
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { clienteDropdown as menuCliente } from "./components/clienteDropdown.js";
+import { clienteDropdown } from "./components/clienteDropdown.js";
 import { getClienteByDNI } from "./services/clienteService.js";
 import { showAlert } from "./utilsDOM/showAlert.js";
 
@@ -13,14 +13,14 @@ const setNavbar = () => {
 
 const menuInvitado = () => {
   return `
-    <a href="/registro" class="btn btn-outline-secondary btn-sm">
-        Registrarse
-    </a>
-    <a href="/login" class="btn btn-outline-primary btn-sm">
+    <a href="/login" class="btn btn-outline-primary">
         Iniciar sesion
     </a>
     `;
 };
+
+const menuCliente = (clienteNombre) => clienteDropdown(clienteNombre);
+
 
 const logInForm = document.getElementById("login-form");
 if (logInForm) {

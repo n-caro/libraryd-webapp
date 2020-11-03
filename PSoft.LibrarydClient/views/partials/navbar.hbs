@@ -1,25 +1,31 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white shadow-sm">
-  <a class="navbar-brand" href="/">
+    <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <a class="navbar-brand m-auto text-hide" href="/">
+    <img src="/img/libraryd-h40.png" height="40" class="d-inline-block align-top" alt="">
     Libraryd
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+  <div class="collapse navbar-collapse mr-auto mb-3 mb-lg-0" id="navbarToggler">
+    <ul class="navbar-nav my-auto p-2">
       <li class="nav-item active">
-        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/">Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/libros">Libros</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="/buscar">Buscar</a>
+        <a class="nav-link" href="/libros">Ver libros</a>
       </li>
     </ul>
-    <!--right  -->
-    <div id="userNavbar">
+    <div class="search ml-auto">
+    <form class="mr-2" action="/buscar" method="GET">
+        <div class="input-group border w-auto">
+        <input type="text" class="form-control border-0" placeholder="Buscar libro..." name="q">
+        <div class="input-group-prepend">
+        <button class="btn btn-outline-secondary border-0" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </form>
     </div>
   </div>
-</div>
+  <div id="userNavbar">
+  </div>
 </nav>

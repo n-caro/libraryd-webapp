@@ -2,7 +2,7 @@ import { cardBodyLibro } from './cardBodyLibro.js'
 export const cardAlquiler = (alquiler) => {
   let { id, libro, fechaAlquiler, fechaDevolucion } = alquiler;
   return `
-  <div class="card my-4">
+  <div class="card my-4 text-left">
   <div class="card-header d-flex">
     <span  class="align-middle">
       Orden #<b>${id}</b>

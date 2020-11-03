@@ -4,6 +4,7 @@ import { showAlert, showAlertRemove } from "./utilsDOM/showAlert.js";
 import { postAlquiler } from "./services/alquilerService.js";
 import { AlquilerDTO } from "./DTOs/AlquilerDTO.js";
 import { cardAlquiler } from "./components/cardAlquiler.js";
+import { cardSuccess } from "./components/cardSuccess.js";
 
 const alquilerForm = document.getElementById("alquilerForm");
 
@@ -51,8 +52,11 @@ const generateAlquiler = async (data) => {
 
 const manageAlquilerResults = (alquiler) => {
   if (alquiler.cliente) {
-    showAlert("<b>Alquiler creado con éxito</b>", "success");
-    alquilerForm.innerHTML = cardAlquiler(alquiler);
+    alquilerForm.innerHTML = cardSuccess(
+      "Alquiler creado",
+      "El alquiler ha sido creada con éxito. Detalles:",
+      cardAlquiler(alquiler)
+    );
   } else {
     alquiler.error = alquiler.error || "Ha ocurrido un error.";
     showAlert(alquiler.message, "danger");
