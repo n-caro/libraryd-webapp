@@ -6,7 +6,8 @@
 .bg-primary {background: #31cdb0!important}
 
 div#app {
-  padding-top: 70px;
+  padding-top: 75px!important;
+  padding-bottom: 50px;
 }
 
 .small {
