@@ -1,6 +1,6 @@
 import { getAlquileresCliente } from "./services/alquilerService.js";
 import { showAlert } from "./utilsDOM/showAlert.js";
-import { clienteSesion } from "./session.js"
+import { clienteSesion, loginRequired } from "./session.js"
 import { cardAlquiler } from "./components/cardAlquiler.js";
 import { cardReserva } from "./components/cardReserva.js";
 
@@ -12,6 +12,7 @@ const nombreApellidoDOM = document.getElementById("nombreApellido");
 window.addEventListener(
   "load",
   () => {
+    loginRequired()
     if (clienteSesion && historialCliente) {
       loadAlquileres(clienteSesion.clienteId);
     }

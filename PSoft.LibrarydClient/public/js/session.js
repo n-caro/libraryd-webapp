@@ -1,6 +1,7 @@
 import { clienteDropdown } from "./components/clienteDropdown.js";
 import { getClienteByDNI } from "./services/clienteService.js";
 import { showAlert } from "./utilsDOM/showAlert.js";
+import { cardWarning } from "./components/cardWarning.js"
 
 const clienteSesion = localStorage.getItem("cliente") ? JSON.parse(localStorage.getItem("cliente")) : null;
 
@@ -10,6 +11,14 @@ const setNavbar = () => {
     ? (userNavbar.innerHTML = menuCliente(clienteSesion.nombre))
     : (userNavbar.innerHTML += menuInvitado());
 };
+
+const loginRequired = () => {
+  if(!clienteSesion) {
+    let clienteRequiredDOM = document.getElementById("clienteRequired");
+    clienteRequiredDOM.innerHTML=cardWarning("Acceso no permitido", "Debes iniciar sesión para continuar", `<a href="/login" class="btn btn-primary btn-lg">Iniciar sesión</a>`);
+  }
+}
+
 
 const menuInvitado = () => {
   return `
@@ -59,4 +68,6 @@ const logOut = () => {
 let logOutButton = document.getElementById("logOutbtn");
 logOutButton ? logOutButton.addEventListener("click", logOut) : "";
 
-export { clienteSesion, setNavbar };
+
+
+export { clienteSesion, setNavbar, loginRequired };

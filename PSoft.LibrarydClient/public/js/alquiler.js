@@ -16,11 +16,16 @@ $("#datepicker").datepicker({
   language: "es",
 });
 
+
+const noSession = () => {
+  showAlert(`Debes <a href="/login">iniciar sesión</a> para realizar un alquiler`, "danger")
+  let btn = document.getElementById('btnsubmit').disabled =true;
+}
 // alquilar
 if (alquilerForm) {
   clienteSesion
     ? (alquilerForm.elements.clienteid.value = clienteSesion.clienteId)
-    : showAlert("Debes iniciar sesion para realizar un alquiler", "danger");
+    : noSession();
   alquilerForm.onsubmit = function (e) {
     e.preventDefault();
     showAlertRemove();

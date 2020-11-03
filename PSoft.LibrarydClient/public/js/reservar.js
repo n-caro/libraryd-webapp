@@ -4,7 +4,7 @@ import { showAlert, showAlertRemove } from "./utilsDOM/showAlert.js";
 import { postAlquiler } from "./services/alquilerService.js";
 import { ReservaDTO } from "./DTOs/AlquilerDTO.js";
 import { cardReserva } from "./components/cardReserva.js";
-import { cardSuccess } from "./components/cardSuccess.js";
+import { cardSuccess} from "./components/cardSuccess.js"
 
 const reservaForm = document.getElementById("reservaForm");
 
@@ -17,12 +17,9 @@ $("#datepicker").datepicker({
 });
 
 const noSession = () => {
-  showAlert(
-    `Debes <a href="/login">iniciar sesión</a> para realizar una reserva`,
-    "danger"
-  );
-  let btn = (document.getElementById("btnsubmit").disabled = true);
-};
+  showAlert(`Debes <a href="/login">iniciar sesión</a> para realizar una reserva`, "danger")
+  let btn = document.getElementById('btnsubmit').disabled =true;
+}
 
 // alquilar
 if (reservaForm) {
@@ -60,14 +57,9 @@ const generateAlquiler = async (data) => {
 
 const manageAlquilerResults = (reserva) => {
   if (reserva.cliente) {
-    reservaForm.innerHTML = cardSuccess(
-      "Reserva creada",
-      "La reserva ha sido creada con éxito",
-      cardReserva(reserva)
-    );
+    reservaForm.innerHTML = cardSuccess("Reserva creada", "La reserva ha sido creada con éxito", cardReserva(reserva) )
   } else {
-    reserva.error =
-      reserva.error || "Ha ocurrido un error al solicitar la reserva.";
+    reserva.error = reserva.error || "Ha ocurrido un error al solicitar la reserva.";
     showAlert(reserva.message, "danger");
   }
 };

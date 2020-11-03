@@ -1,5 +1,10 @@
 @import "bootstrap-datepicker3.min.css";
 
+/* CUSTOM COLORS */
+.text-primary { color: #31cdb0!important}
+.text-secondary { color: #3551a4!important}
+.bg-primary {background: #31cdb0!important}
+
 div#app {
   padding-top: 70px;
 }
@@ -29,9 +34,9 @@ div#app {
 }
 
 /*  CARDS */
-#cardSuccess .icon {
+#cardBig .icon {
   font-size: 5em;
 }
-#cardSuccess .title {
+#cardBig .title {
   font-size: 2em;
 }
