@@ -73,6 +73,7 @@ namespace PSoft.Libraryd.AcessData.Queries
                     "Libros.Imagen AS LibroImagen")
                 .Where("Cliente", "=", cliente)
                 .Join("Libros", "Alquileres.ISBN", "Libros.ISBN")
+                .OrderByDesc("Alquileres.Id")
                 .Get<ResponseAlquilerDTO>()
                 .ToList();
 
