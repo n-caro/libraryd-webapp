@@ -8,11 +8,15 @@ const ESTADO_RESERVA = 1;
 const ESTADO_ALQUILER = 2;
 
 const historialCliente = document.getElementById("historialCliente");
+const nombreApellidoDOM = document.getElementById("nombreApellido");
 window.addEventListener(
   "load",
   () => {
     if (clienteSesion && historialCliente) {
       loadAlquileres(clienteSesion.clienteId);
+    }
+    if(clienteSesion && nombreApellidoDOM) {
+      nombreApellidoDOM.innerHTML = `${clienteSesion.nombre} ${clienteSesion.apellido}`
     }
   },
   false

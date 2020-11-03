@@ -21,7 +21,6 @@ const menuInvitado = () => {
 
 const menuCliente = (clienteNombre) => clienteDropdown(clienteNombre);
 
-
 const logInForm = document.getElementById("login-form");
 if (logInForm) {
   logInForm.onsubmit = function (e) {

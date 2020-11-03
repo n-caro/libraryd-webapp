@@ -1,8 +1,36 @@
 {{> head}}
 {{! --------------- }}
 <div class="container">
-    Dashboard de usuario
-    <a href="/cliente/historial">Historial</a>
+  <div class="row">
+    <div class="col-12 col-lg-6 order-lg-2 d-flex">
+      <img class="img-fluid p-5"src="/img/illustrations/undraw_Bookshelves_re.svg"  alt="pagina no encontrada">
+    </div>
+    <div class="col-12 col-lg-6 d-flex justify-content-start  text-left">
+      <div class="m-auto px-2">
+        <h2 class="font-weight-light">Nos alegra volver a verte, <span id="nombreApellido" class="d-inline text-primary"></span></h2>
+        <!-- menu client-->
+        <section>
+          <ul class="nav flex-column list-group list-group-flush">
+          <li class="nav-item list-group-item">
+          <a class="nav-link" href="/cliente/historial"><i class="fas fa-history" aria-hidden="true"></i> Ver alquileres y reservas
+            <small class="d-block text-muted">Observa en detalle el historial de los alquileres y reservas que has realizado.</small>
+          </a>
+          </li>
+          <li class="nav-item list-group-item">
+            <a class="nav-link" href="/alquilar"><i class="fas fa-book"></i> Alquilar libro
+              <small class="d-block text-muted">Gestiona el alquiler desde nuestro sitio, en la fecha que desees.</small>
+            </a>
+          </li>
+          <li class="nav-item list-group-item">
+            <a class="nav-link" href="/alquilar"><i class="fas fa-calendar-plus"></i> Reservar libro
+              <small class="d-block text-muted">Puedes reservar un libro en la fecha que desees.</small>
+            </a>
+          </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
 </div>
 {{! --------------- }}
 {{> footer}}

@@ -1,7 +1,7 @@
 const routes = require("express").Router();
 // dashboard: /cliente/
 routes.get("/", (req, res) => {
-  res.render("cliente/dashboard", { title: "Dashboard | Libraryd" });
+  res.render("cliente/dashboard", { title: "Dashboard | Libraryd", scripts: ["cliente.js"]});
 });
 // cliente/alquileres
 routes.get("/historial", (req, res) => {
