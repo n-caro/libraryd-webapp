@@ -1,46 +1,17 @@
-# Libraryd v2: API📚
+# Libraryd web-app📚
+<p align="center">
+<img src="https://user-images.githubusercontent.com/45347839/98265722-30c1d000-1f68-11eb-8f48-439b0134b7e4.png" alt="libraryd-logo-big" style="zoom:33%;" /></p>
+<p align="center"><b>Libraryd</b></p>
+<p align="center">A small web application project 👩‍💻 for booking and renting books from a Library 📚. <b>Built in .NET Core + EF Core ,  Node.js (Express + HBS) and Javascript</b> .
+</p>
 
-A small web application project 👩‍💻 for booking and renting books from a Library 📚. **Built in .NET Core + EF Core**.
-
-This application is a practice of the subject Software Project in the Computer Engineering degree.
-
-
-
-## About V2: API
-
+This application is a practice of the subject Software Project in the Computer Engineering degree 👨‍🎓 at National University Arturo Jauretche.
 
 
+### About
 
+The project has been requested in 3 versions, being v3 the final version of the project.
 
-## Install and Use
-
-### Create Database
-
-You need change `connectionString` value* for **appsettings.Development.json** file located in `libraryd-webapp/PSoft.Libraryd/PSoft.Libraryd.API`
-
-`*Note:the application works with Microsoft SQLServer ` 
-
-Now using the `update-database` command in the Package Manager Console, as below (verify that the default project is PSoft.Libraryd.API)
-
-```shell
-PM> update-database
-```
-
-Or Enter the following command in dotnet CLI.
-
-```powershell
-> dotnet ef database update --project PSoft.Libraryd.API
-```
-
-### Run
-
-In Terminal: 
-
-```shell
-cd PSoft.Libraryd
-
-dotnet run --project PSoft.Libraryd.API
-```
-
-
-
+* V3: Web App: Client + API
+* V2: API
+* V1: Console Application

@@ -3,7 +3,7 @@ import { APIRUL_ALQUILER, APIRUL_ALQUILERCLIENTEID } from "../config/constants.j
 export const postAlquiler = (data) => {
   return fetch(APIRUL_ALQUILER, {
     method: 'POST',
-    body: JSON.stringify(data), // data can be `string` or {object}!
+    body: JSON.stringify(data),
     headers:{
       'Content-Type': 'application/json'
       }

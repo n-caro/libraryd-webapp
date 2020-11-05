@@ -1,9 +1,11 @@
 import { clienteDropdown } from "./components/clienteDropdown.js";
 import { getClienteByDNI } from "./services/clienteService.js";
 import { showAlert } from "./utilsDOM/showAlert.js";
-import { cardWarning } from "./components/cardWarning.js"
+import { cardWarning } from "./components/cardWarning.js";
 
-const clienteSesion = localStorage.getItem("cliente") ? JSON.parse(localStorage.getItem("cliente")) : null;
+const clienteSesion = localStorage.getItem("cliente")
+  ? JSON.parse(localStorage.getItem("cliente"))
+  : null;
 
 const setNavbar = () => {
   let userNavbar = document.getElementById("userNavbar");
@@ -13,12 +15,15 @@ const setNavbar = () => {
 };
 
 const loginRequired = () => {
-  if(!clienteSesion) {
+  if (!clienteSesion) {
     let clienteRequiredDOM = document.getElementById("clienteRequired");
-    clienteRequiredDOM.innerHTML=cardWarning("Acceso no permitido", "Debes iniciar sesión para continuar", `<a href="/login" class="btn btn-primary btn-lg">Iniciar sesión</a>`);
+    clienteRequiredDOM.innerHTML = cardWarning(
+      "Acceso no permitido",
+      "Debes iniciar sesión para continuar",
+      `<a href="/login" class="btn btn-primary btn-lg">Iniciar sesión</a>`
+    );
   }
-}
-
+};
 
 const menuInvitado = () => {
   return `
@@ -67,7 +72,5 @@ const logOut = () => {
 
 let logOutButton = document.getElementById("logOutbtn");
 logOutButton ? logOutButton.addEventListener("click", logOut) : "";
-
-
 
 export { clienteSesion, setNavbar, loginRequired };
